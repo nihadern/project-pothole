@@ -280,8 +280,14 @@ footer{background:var(--bg0);border-top:1px solid var(--line);padding:26px 0}
   .deck-arrow{display:none}
 }
 /* hotzones */
-.hz{width:19px;height:19px;border-radius:50%;border:1px solid var(--ac-d);color:var(--ac);font-family:var(--fm);font-size:.74rem;font-weight:700;display:flex;align-items:center;justify-content:center;line-height:1;flex-shrink:0;transition:background .15s,transform .15s;cursor:pointer}
-.hz:hover{background:var(--ac);color:#04140b;transform:scale(1.12)}
+.hz{width:21px;height:21px;border-radius:50%;border:none;background:var(--ac);color:#04140b;font-family:var(--fm);font-size:.8rem;font-weight:700;display:flex;align-items:center;justify-content:center;line-height:1;flex-shrink:0;cursor:pointer;animation:hzpulse 1.5s ease-in-out infinite}
+.hz:hover{transform:scale(1.18)}
+@keyframes hzpulse{0%{box-shadow:0 0 0 0 rgba(52,209,126,.7)}70%{box-shadow:0 0 0 10px rgba(52,209,126,0)}100%{box-shadow:0 0 0 0 rgba(52,209,126,0)}}
+/* big zoom control, centred on the map */
+.tzoom{position:absolute;top:50%;right:20px;transform:translateY(-50%);z-index:650;display:flex;flex-direction:column;gap:9px}
+.tzoom button{width:54px;height:54px;border-radius:14px;background:rgba(10,13,14,.88);border:1px solid var(--line2);color:var(--ac);font-size:2rem;font-weight:300;line-height:1;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 28px rgba(0,0,0,.45);backdrop-filter:blur(6px);transition:all .15s}
+.tzoom button:hover{background:var(--ac);color:#04140b;border-color:var(--ac)}
+.tzoom button:active{transform:scale(.94)}
 .tov-h{gap:8px}
 .hzpop{position:absolute;z-index:850;width:230px;background:var(--panel);border:1px solid var(--ac-d);border-radius:9px;padding:13px 15px;box-shadow:0 18px 44px rgba(0,0,0,.6);display:none}
 .hzpop.show{display:block}
@@ -404,9 +410,7 @@ nav.scrolled{background:rgba(255,255,255,.96)!important}
 .step,.why-c,.af,.slide-body,.cmp,.tc{box-shadow:0 6px 22px rgba(20,40,30,.06)}
 /* story-on-scroll: each section is a chapter/slide */
 .story-step{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ac);margin-bottom:14px;padding:5px 13px;border:1px solid var(--ac-d);border-radius:30px}
-html{scroll-snap-type:y proximity}
-section{scroll-snap-align:start;scroll-margin-top:58px}
-@media(max-width:760px){html{scroll-snap-type:none}}
+section{scroll-margin-top:64px}
 </style>
 </head>
 <body>
@@ -470,6 +474,7 @@ section{scroll-snap-align:start;scroll-margin-top:58px}
     <p class="ssub" style="margin-left:auto;margin-right:auto">Green is good, yellow needs attention, red is bad. Tap any road to inspect it — or tap the <b style="color:var(--ac)">?</b> marks to learn what each panel shows.</p>
   </div>
   <div class="twin-shell">
+    <div class="tzoom"><button id="tzIn" aria-label="Zoom in">+</button><button id="tzOut" aria-label="Zoom out">−</button></div>
     <div class="hzpop" id="hzpop"><div class="hzpop-t" id="hzpopT"></div><div class="hzpop-d" id="hzpopD"></div></div>
     <div class="tov tbar">
       <div class="l"><span class="live"><span class="sq"></span>PWD NETWORK · LIVE</span><span id="tbZoom">ZOOM 8 · STATE</span></div>
@@ -845,10 +850,11 @@ function pp(r){return `<div class="pp-n">${r.name}</div>
   const tour=[[9.9816,76.2999,14],[11.2588,75.7804,14],[8.5241,76.9366,13],[10.5276,76.2144,14]];let i=0;m.setView([tour[0][0],tour[0][1]],tour[0][2]);
   setInterval(()=>{i=(i+1)%tour.length;m.flyTo([tour[i][0],tour[i][1]],tour[i][2],{duration:4.6});},7200);})();
 /* TWIN command map */
-(()=>{const m=L.map('twinMap',{zoomControl:false,attributionControl:false,scrollWheelZoom:true,wheelPxPerZoomLevel:90});
+(()=>{const m=L.map('twinMap',{zoomControl:false,attributionControl:false,scrollWheelZoom:false,doubleClickZoom:true});
   L.tileLayer(SAT,SATO).addTo(m);m.fitBounds(KLB);
-  L.control.zoom({position:'bottomright'}).addTo(m);
   L.control.attribution({prefix:false}).addAttribution('Esri · Maxar').addTo(m);
+  const _zi=document.getElementById('tzIn'),_zo=document.getElementById('tzOut');
+  if(_zi)_zi.onclick=()=>m.zoomIn();if(_zo)_zo.onclick=()=>m.zoomOut();
   const sel=document.getElementById('selBody'),selS=document.getElementById('selStatus');
   function showSel(r){selS.textContent=CL[r.c];selS.style.color=CC[r.c];
     sel.innerHTML=`<div class="sel-name">${r.name}</div><div class="sel-grid">
