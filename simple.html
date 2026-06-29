@@ -811,7 +811,7 @@ section{scroll-margin-top:64px}
 <script>
 const nav=document.getElementById('nav');
 addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40));
-const ro=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+const ro=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:0,rootMargin:'0px 0px -10% 0px'});
 document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
 
 const SAT='https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
