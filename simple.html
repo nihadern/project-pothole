@@ -411,9 +411,102 @@ nav.scrolled{background:rgba(255,255,255,.96)!important}
 /* story-on-scroll: each section is a chapter/slide */
 .story-step{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ac);margin-bottom:14px;padding:5px 13px;border:1px solid var(--ac-d);border-radius:30px}
 section{scroll-margin-top:64px}
+
+/* ── Data Fusion section ── */
+#fusion{background:var(--bg0);border-top:1px solid var(--line)}
+.fusion{max-width:900px;margin:0 auto}
+.fhead{text-align:center;margin-bottom:36px}
+.ftitle{font-family:var(--fd);font-size:clamp(1.4rem,2.5vw,2rem);font-weight:700;color:var(--tx);line-height:1.2;margin-top:10px}
+.ftitle em{font-style:italic;color:var(--gold)}
+.fdiag{display:grid;grid-template-columns:1fr 80px 220px;gap:0;align-items:center;max-width:760px;margin:0 auto}
+.fsrcs{display:flex;flex-direction:column;gap:12px}
+.fnode{display:flex;align-items:center;gap:12px;padding:10px 14px;border:1px solid var(--line);border-radius:9px;background:var(--panel);box-shadow:0 4px 14px rgba(20,40,30,.05)}
+.fnode.pri{border-color:var(--ac-d);background:rgba(12,154,82,.05)}
+.fi{width:32px;height:32px;border-radius:7px;background:rgba(12,154,82,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--ac)}
+.fnode.pri .fi{background:rgba(12,154,82,.18)}
+.fi .ic{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.fn-n{font-size:.88rem;font-weight:600;color:var(--tx)}
+.fn-b{font-size:.71rem;color:var(--t3);margin-top:1px}
+/* THE CORE FIX: constrain the SVG and kill the default black fill on paths */
+.fwires{width:80px;height:300px;display:block;flex-shrink:0}
+.fwire{fill:none;stroke:var(--line2);stroke-width:1.5;stroke-dasharray:5 4}
+.fwire.pri{fill:none;stroke:var(--ac-d);stroke-width:2;stroke-dasharray:none}
+.fcore{border:1px solid var(--ac-d);border-radius:12px;overflow:hidden;background:var(--panel)}
+.fcore-map{height:130px;background:linear-gradient(150deg,#0b1b10,#091410,#0d1a0f);position:relative;overflow:hidden;display:flex;align-items:flex-start;justify-content:flex-start;padding:8px}
+.fcore-tag{font-family:var(--fm);font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ac);display:flex;align-items:center;gap:6px}
+.fcore-tag .sq{width:6px;height:6px;background:var(--ac);border-radius:50%;animation:hzpulse 1.5s ease-in-out infinite}
+.fcore-cap{padding:12px 14px;border-top:1px solid rgba(12,154,82,.2)}
+.fc-t{font-weight:700;color:var(--tx);font-size:.9rem}
+.fc-s{font-size:.74rem;color:var(--t2);margin-top:3px;line-height:1.4}
+.fout{display:flex;justify-content:center;gap:22px;margin-top:30px;flex-wrap:wrap}
+.fout span{display:flex;align-items:center;gap:7px;font-size:.86rem;color:var(--t2);font-weight:500;padding:8px 14px;border:1px solid var(--line);border-radius:20px;background:var(--panel)}
+.ic-sm{width:15px;height:15px;display:inline-block;vertical-align:middle;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.fout .ic-sm{color:var(--ac)}
+@media(max-width:860px){
+  .fdiag{grid-template-columns:1fr;gap:20px}
+  .fwires{display:none}
+  .fcore{max-width:360px;margin:0 auto}
+  .fsrcs{flex-direction:row;flex-wrap:wrap;gap:10px}
+  .fnode{flex:1;min-width:140px}
+}
+
+/* ── Detection Engine section ── */
+#detect{background:var(--bg1);border-top:1px solid var(--line)}
+.dgrid{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
+.vctl{display:flex;align-items:center;justify-content:space-between;margin-top:12px;gap:10px;flex-wrap:wrap}
+.seg-toggle{display:flex;border:1px solid var(--line2);border-radius:7px;overflow:hidden}
+.seg-toggle button{padding:7px 14px;font-size:.76rem;font-weight:600;color:var(--t3);background:none;transition:.15s}
+.seg-toggle button.on{background:var(--ac);color:#04140b}
+.seg-toggle button:hover:not(.on){background:rgba(12,154,82,.08);color:var(--ac)}
+.vreplay{display:flex;align-items:center;gap:7px;font-size:.76rem;color:var(--t2);padding:7px 12px;border:1px solid var(--line2);border-radius:7px;transition:.15s}
+.vreplay:hover{border-color:var(--ac-d);color:var(--ac)}
+.term{border:1px solid var(--line2);border-radius:12px;overflow:hidden;background:var(--panel);font-family:var(--fm)}
+.term-h{display:flex;align-items:center;justify-content:space-between;padding:10px 15px;background:var(--panel);border-bottom:1px solid var(--line);font-size:.78rem;font-weight:600;color:var(--tx);letter-spacing:.02em}
+.term-h span+span{font-size:.68rem;color:var(--t3)}
+.term-b{padding:12px 14px}
+.det-rows{display:flex;flex-direction:column;gap:7px;margin-bottom:14px}
+.drow{display:flex;align-items:center;gap:10px;padding:9px 11px;border-radius:7px;border:1px solid var(--line);opacity:0;transform:translateX(8px);transition:.4s}
+.drow.show{opacity:1;transform:none}
+.drow .mk{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.drow .nm{font-size:.82rem;font-weight:600;color:var(--tx)}
+.drow .mt{font-size:.69rem;color:var(--t3);margin-top:2px}
+.drow .cf{margin-left:auto;font-size:.82rem;font-weight:700;font-family:var(--fm)}
+.term-line{display:flex;gap:8px;font-size:.7rem;margin-bottom:7px;align-items:baseline}
+.term-line .k{color:var(--t3);letter-spacing:.08em;text-transform:uppercase;flex-shrink:0;width:68px}
+.term-line .v{color:var(--tx);font-weight:500}
+.term-line .v.bad{color:var(--ar);font-weight:700}
+.iri-bar{display:inline-flex;gap:2px;margin-left:6px;vertical-align:middle}
+.iri-bar i{display:inline-block;width:6px;height:9px;border-radius:1px;background:var(--ar)}
+.iri-bar i:not(.f){background:var(--line2)}
+.cursor{display:inline-block;width:6px;height:12px;background:var(--ac);margin-left:2px;vertical-align:middle;animation:blink .9s step-end infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.btag{position:absolute;top:-18px;left:-2px;font-size:.58rem;font-weight:700;padding:2px 6px;white-space:nowrap;color:#fff;background:var(--ar);font-family:var(--fm)}
+.bbox.warn .btag,.bbox.w .btag{background:var(--au);color:#1a1205}
+.crn{position:absolute;width:8px;height:8px;opacity:.7}
+.crn.a{top:-1px;right:-1px;border-top:2px solid currentColor;border-right:2px solid currentColor}
+.crn.b{bottom:-1px;left:-1px;border-bottom:2px solid currentColor;border-left:2px solid currentColor}
+.bbox.poor{border-color:var(--ar)}
+.bbox.warn{border-color:var(--au)}
+@media(max-width:860px){
+  .dgrid{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
+<!-- SVG symbol defs for icon <use> references throughout the page -->
+<svg aria-hidden="true" style="display:none;position:absolute" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<symbol id="i-camera" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></symbol>
+<symbol id="i-drone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2.5"/><path d="M5 5h2.5M16.5 5H19M5 19h2.5M16.5 19H19"/><path d="M5 5 7.5 12 5 19M19 5 16.5 12 19 19"/><path d="M7.5 12h9"/></symbol>
+<symbol id="i-satellite" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></symbol>
+<symbol id="i-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
+<symbol id="i-map" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></symbol>
+<symbol id="i-trending" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
+<symbol id="i-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3z"/><path d="M12 9v4"/><path d="M12 17h.01"/></symbol>
+</defs>
+</svg>
 <nav id="nav">
   <div class="logo"><span class="mk"></span>Project&nbsp;<b>Pothole</b></div>
   <div class="nav-r">
