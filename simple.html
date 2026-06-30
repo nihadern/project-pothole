@@ -45,11 +45,11 @@ nav.scrolled{background:rgba(10,12,13,.92);backdrop-filter:blur(14px);border-bot
 .nav-lang:hover{border-color:var(--ac-d);color:var(--ac)}
 [lang="ml"]{font-family:'Noto Sans Malayalam','DM Sans',sans-serif}
 html[lang="ml"] h1,html[lang="ml"] .stitle,html[lang="ml"] .slide-body h3,html[lang="ml"] .problem-q,html[lang="ml"] .close-h{font-family:'Noto Sans Malayalam',serif;font-weight:700;font-style:normal;letter-spacing:0}
-.nav-cta{background:var(--ac);color:#04140b;font-weight:600;font-size:.84rem;padding:9px 16px;border-radius:6px}
+.nav-cta{background:var(--ac);color:#04140b;font-weight:600;font-size:.84rem;padding:9px 16px;border-radius:6px;white-space:nowrap}
 .nav-cta:hover{background:#5fe09b}
 
 /* hero */
-#hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;background:var(--bg0)}
+#hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;background:var(--bg0)}
 #heroSat{position:absolute;inset:0;z-index:0;filter:saturate(.9) brightness(.5) contrast(1.1)}
 .hero-grad{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(10,12,13,.8),rgba(10,12,13,.55) 40%,rgba(10,12,13,.92))}
 .hero-in{position:relative;z-index:3;max-width:880px;margin:0 auto;padding:90px 26px 40px;text-align:center}
@@ -62,6 +62,8 @@ h1 em{font-style:italic;color:var(--gold)}
 .btn-a{display:inline-flex;align-items:center;gap:9px;background:var(--ac);color:#04140b;padding:15px 28px;border-radius:8px;font-weight:600;font-size:1rem;transition:transform .15s,background .2s}
 .btn-a:hover{background:#5fe09b;transform:translateY(-2px)}
 .btn-b{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line2);padding:15px 28px;border-radius:8px;font-weight:500;font-size:1rem;transition:border-color .2s,background .2s;backdrop-filter:blur(6px)}
+#hero .btn-b{border-color:rgba(255,255,255,.55);color:#e7ecea;background:rgba(255,255,255,.08)}
+#hero .btn-b:hover{border-color:var(--ac);background:rgba(52,209,126,.15);color:#fff}
 .btn-b:hover{border-color:var(--ac-d);background:rgba(52,209,126,.06)}
 .hero-stats{margin-top:46px;display:inline-flex;gap:0;border:1px solid var(--line);border-radius:10px;background:rgba(10,12,13,.5);backdrop-filter:blur(6px)}
 .hs{padding:15px 28px;border-right:1px solid var(--line)}
@@ -340,7 +342,7 @@ footer{background:var(--bg0);border-top:1px solid var(--line);padding:26px 0}
 .al-th .ex{position:absolute;bottom:1px;right:2px;font-family:var(--fm);font-size:.66rem;font-weight:600;color:var(--tx);background:rgba(0,0,0,.55);width:13px;height:13px;display:flex;align-items:center;justify-content:center;border-radius:2px;line-height:1}
 .al:hover .al-th{box-shadow:0 0 0 1px var(--ac)}
 /* lightbox */
-.lightbox{position:absolute;inset:0;z-index:900;background:rgba(5,8,9,.84);backdrop-filter:blur(7px);display:none;align-items:center;justify-content:center;padding:26px}
+.lightbox{position:fixed;inset:0;z-index:9000;background:rgba(5,8,9,.84);backdrop-filter:blur(7px);display:none;align-items:center;justify-content:center;padding:26px}
 .lightbox.show{display:flex}
 .lb{width:min(540px,94%);max-height:92%;overflow:auto;border-radius:5px;background:var(--panel);box-shadow:0 30px 90px rgba(0,0,0,.65)}
 .lb-top{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid var(--line);font-family:var(--fm);font-size:.74rem;letter-spacing:.04em;color:var(--tx);font-weight:600}
@@ -432,7 +434,10 @@ section{scroll-margin-top:64px}
 .fwire{fill:none;stroke:var(--line2);stroke-width:1.5;stroke-dasharray:5 4}
 .fwire.pri{fill:none;stroke:var(--ac-d);stroke-width:2;stroke-dasharray:none}
 .fcore{border:1px solid var(--ac-d);border-radius:12px;overflow:hidden;background:var(--panel)}
-.fcore-map{height:130px;background:linear-gradient(150deg,#0b1b10,#091410,#0d1a0f);position:relative;overflow:hidden;display:flex;align-items:flex-start;justify-content:flex-start;padding:8px}
+.fcore-map{height:160px;background:linear-gradient(160deg,#daf0e6,#eaf8f0,#d5ece0);position:relative;overflow:hidden;display:flex;align-items:flex-start;justify-content:flex-start;padding:8px}
+.fcore-tag{z-index:2;position:relative;background:rgba(255,255,255,.75);border-radius:4px;padding:3px 8px}
+.fcore-tag .sq{animation:hzpulse 1.5s ease-in-out infinite}
+.fmap-svg{position:absolute;inset:0;width:100%;height:100%;opacity:1}
 .fcore-tag{font-family:var(--fm);font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ac);display:flex;align-items:center;gap:6px}
 .fcore-tag .sq{width:6px;height:6px;background:var(--ac);border-radius:50%;animation:hzpulse 1.5s ease-in-out infinite}
 .fcore-cap{padding:12px 14px;border-top:1px solid rgba(12,154,82,.2)}
@@ -490,6 +495,89 @@ section{scroll-margin-top:64px}
 @media(max-width:860px){
   .dgrid{grid-template-columns:1fr}
 }
+
+/* ── Resolution comparison (sources section) ── */
+.reso-card{border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:24px 22px;margin-bottom:32px;box-shadow:0 4px 18px rgba(20,40,30,.06)}
+.rt{font-family:var(--fd);font-size:1.25rem;font-weight:700;color:var(--tx);margin-bottom:8px}
+.rs{font-size:.92rem;color:var(--t2);margin-bottom:20px;line-height:1.55}
+.rs em{font-style:italic;color:var(--gold)}
+.reso-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.rframe{display:flex;flex-direction:column;gap:7px}
+.rframe.best .rcanvas{border-color:var(--ac-d);box-shadow:0 0 0 1.5px var(--ac-d)}
+.rcanvas{position:relative;border:1px solid var(--line2);border-radius:9px;overflow:hidden;background:#e8ede9}
+.rcanvas canvas{width:100%;height:auto;display:block}
+.gsd{position:absolute;top:6px;left:7px;font-family:var(--fm);font-size:.6rem;font-weight:700;background:rgba(0,0,0,.58);color:#fff;padding:2px 7px;border-radius:3px;z-index:2;letter-spacing:.04em}
+.rname{font-size:.82rem;color:var(--tx);font-weight:600}
+.rname span{color:var(--t3);font-weight:400}
+.rvd{display:flex;align-items:center;gap:6px;font-size:.75rem;color:var(--t2);font-weight:500;line-height:1.4}
+.rvd.no{color:var(--ar)}.rvd.warn{color:var(--au)}.rvd.ok{color:var(--ac)}
+.reso-foot{margin-top:18px;display:flex;align-items:flex-start;gap:9px;font-size:.85rem;color:var(--t2);padding-top:16px;border-top:1px solid var(--line);line-height:1.5}
+.reso-foot>.ic-sm{flex-shrink:0;margin-top:2px;color:var(--ac)}
+@media(max-width:860px){.reso-row{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.reso-row{grid-template-columns:repeat(2,1fr)}}
+
+/* ── Source cards (imagery strategy) ── */
+.scards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
+.scard{position:relative;border:1px solid var(--line);border-radius:12px;background:var(--panel);padding:18px 16px;box-shadow:0 4px 14px rgba(20,40,30,.05);transition:box-shadow .2s}
+.scard:hover{box-shadow:0 6px 24px rgba(20,40,30,.1)}
+.scard.rec{border-color:var(--ac-d);background:rgba(12,154,82,.04)}
+.scard.no{opacity:.82}.scard.cls{opacity:.82}
+.tagline{position:absolute;top:-1px;right:14px;font-family:var(--fm);font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;background:var(--ac);color:#04140b;border-radius:0 0 6px 6px}
+.scard.cls .tagline{background:var(--line2);color:var(--t3)}
+.si{width:36px;height:36px;border-radius:8px;background:rgba(12,154,82,.1);display:flex;align-items:center;justify-content:center;color:var(--ac);margin-bottom:10px}
+.si .ic{width:18px;height:18px;flex-shrink:0}
+.scat{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);margin-bottom:2px}
+.sname{font-size:.92rem;font-weight:600;color:var(--tx);margin-bottom:10px}
+.srow{display:flex;align-items:center;gap:5px;font-size:.78rem;margin-bottom:4px}
+.srow .k{color:var(--t3);flex-shrink:0}
+.srow .k::after{content:':'}
+.srow .v{color:var(--tx);font-weight:500}
+.pips{display:flex;gap:3px;align-items:center}
+.pips i{display:inline-block;width:10px;height:10px;border-radius:2px;background:var(--line2)}
+.pips i.g{background:var(--ac)}.pips i.r{background:var(--ar)}
+.svd{margin-top:10px;font-size:.76rem;color:var(--t2);line-height:1.5;padding-top:10px;border-top:1px solid var(--line)}
+.svd.ok{color:var(--ac)}.svd.warn{color:var(--au)}.svd.no{color:var(--ar)}.svd.cls{color:var(--t3)}
+@media(max-width:860px){.scards{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:500px){.scards{grid-template-columns:1fr}}
+
+/* ── Missing CSS rules ── */
+.termVerdict{transition:opacity .5s}
+.termVerdict.show{opacity:1!important}
+.fcore-card{border:1px solid var(--ac-d);border-radius:12px;overflow:hidden;background:var(--panel)}
+.twin-bar{display:flex;align-items:center;gap:10px;padding:10px 14px;font-family:var(--fm);font-size:.66rem;color:var(--t2)}
+.al-thumb{position:relative;width:48px;height:40px;border:1px solid;border-radius:3px;overflow:hidden;flex-shrink:0}
+.al-thumb img{width:100%;height:100%;object-fit:cover}
+.al-thumb.p{border-color:var(--ar)}.al-thumb.w{border-color:var(--au)}
+
+/* ── Hero mobile void fix ── */
+@media(max-width:700px){
+  #hero{min-height:auto;padding-top:64px;padding-bottom:0}
+  .hero-in{padding:36px 22px 40px}
+  .hero-stats{display:grid;grid-template-columns:repeat(3,1fr);width:100%;border-radius:10px}
+  .hs{padding:12px 10px;border-right:1px solid var(--line);text-align:center}
+  .hs:last-child{border-right:0}
+}
+
+/* ── Mobile/tablet section padding ── */
+@media(max-width:860px){
+  section{padding:56px 0}
+  #twin{padding:40px 0 0}
+}
+@media(max-width:600px){
+  section{padding:40px 0}
+  #twin{padding:28px 0 0}
+}
+
+/* ── Twin dashboard mobile: map height + zoom ── */
+@media(max-width:900px){
+  #twinMap{height:55vh;max-height:380px}
+  .tzoom{top:54px;bottom:auto;right:12px;transform:none}
+  .tzoom button{width:38px;height:38px;font-size:1.5rem}
+  #twin{padding-top:40px}
+}
+@media(max-width:600px){
+  #twinMap{height:48vh;max-height:300px}
+}
 </style>
 </head>
 <body>
@@ -525,7 +613,7 @@ section{scroll-margin-top:64px}
     <h1>Every road in Kerala,<br><em>on one map.</em></h1>
     <p class="hero-sub">Project Pothole finds and ranks every pothole across all 29,500 km of public roads — so the worst roads get fixed first, with proof.</p>
     <div class="hero-cta">
-      <button class="btn-a" id="heroTour">▶ Take the 60-second tour</button>
+      <button class="btn-a" id="heroTour">▶ See how it works</button>
       <a href="#twin" class="btn-b">See the live map</a>
     </div>
     <div class="hero-stats">
@@ -664,7 +752,35 @@ section{scroll-margin-top:64px}
           <path class="fwire" d="M0 270 C70 270 55 150 120 150"/>
         </svg>
         <div class="fcore brk">
-          <div class="fcore-map" id="fusionMap"><span class="fcore-tag"><span class="sq"></span>LIVE TWIN</span></div>
+          <div class="fcore-map" id="fusionMap">
+            <span class="fcore-tag"><span class="sq"></span>LIVE TWIN</span>
+            <svg class="fmap-svg" viewBox="0 0 220 160" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+              <!-- background wash -->
+              <rect width="220" height="160" fill="#c8ecd8" rx="0"/>
+              <!-- simplified Kerala coast silhouette -->
+              <path d="M125 2 C118 18 112 34 109 52 C106 68 107 84 104 100 C101 116 96 130 94 145 C92 155 90 158 90 158 L86 158 C86 148 88 136 90 122 C93 106 97 90 98 74 C99 58 97 42 100 26 C103 12 108 4 114 2 Z" fill="#a8d9bb" opacity=".7"/>
+              <!-- major roads - coloured by condition -->
+              <path d="M109 8 Q108 40 106 72 Q104 104 102 140" stroke="#0c9a52" stroke-width="2.2" fill="none" stroke-linecap="round" opacity=".9"/>
+              <path d="M86 30 Q96 48 104 70" stroke="#FFB020" stroke-width="1.8" fill="none" stroke-linecap="round" opacity=".85"/>
+              <path d="M122 55 Q114 62 106 72 Q98 80 88 88" stroke="#FF5A52" stroke-width="2" fill="none" stroke-linecap="round" opacity=".85"/>
+              <path d="M104 100 Q116 96 128 90" stroke="#0c9a52" stroke-width="1.6" fill="none" stroke-linecap="round" opacity=".8"/>
+              <path d="M102 125 Q90 120 80 114" stroke="#FFB020" stroke-width="1.5" fill="none" stroke-linecap="round" opacity=".7"/>
+              <!-- poor road highlight dot -->
+              <circle cx="95" cy="88" r="5" fill="#FF5A52" opacity=".9"/>
+              <circle cx="95" cy="88" r="9" fill="none" stroke="#FF5A52" stroke-width="1.2" opacity=".4"/>
+              <!-- good segment dot -->
+              <circle cx="106" cy="50" r="3.5" fill="#0c9a52" opacity=".9"/>
+              <!-- fair segment dot -->
+              <circle cx="103" cy="115" r="3" fill="#FFB020" opacity=".9"/>
+              <!-- grid lines (map feel) -->
+              <line x1="0" y1="40" x2="220" y2="40" stroke="#0c9a52" stroke-width=".4" opacity=".2"/>
+              <line x1="0" y1="80" x2="220" y2="80" stroke="#0c9a52" stroke-width=".4" opacity=".2"/>
+              <line x1="0" y1="120" x2="220" y2="120" stroke="#0c9a52" stroke-width=".4" opacity=".2"/>
+              <line x1="55" y1="0" x2="55" y2="160" stroke="#0c9a52" stroke-width=".4" opacity=".2"/>
+              <line x1="110" y1="0" x2="110" y2="160" stroke="#0c9a52" stroke-width=".4" opacity=".2"/>
+              <line x1="165" y1="0" x2="165" y2="160" stroke="#0c9a52" stroke-width=".4" opacity=".2"/>
+            </svg>
+          </div>
           <div class="fcore-cap"><div class="fc-t">Digital Twin</div><div class="fc-s">A live map of every road's condition, combined from all sources</div></div>
         </div>
       </div>
@@ -687,9 +803,9 @@ section{scroll-margin-top:64px}
     </div>
     <div class="dgrid">
       <div class="reveal d1">
-        <div class="viewer" id="viewer">
+        <div class="viewer" id="viewerDetect">
           <div class="vbar"><span>FRAME · SH-29 · 11.067°N 76.074°E</span><span class="r"><span class="sq"></span>YOLO-v8 / KERALA-ROADS</span></div>
-          <div class="vimg" id="vimg">
+          <div class="vimg" id="vimgDetect">
             <img src="assets/pothole-detect.jpg" alt="Road surface with potholes and cracking">
             <div class="scanbar"></div>
             <div class="bbox poor" data-d="0" style="left:38%;top:55%;width:28%;height:30%"><span class="btag">POTHOLE · 96%</span><span class="crn a"></span><span class="crn b"></span></div>
@@ -713,7 +829,7 @@ section{scroll-margin-top:64px}
               <div class="drow" data-d="2"><span class="mk" style="background:var(--ac)"></span><div><div class="nm">Alligator cracking</div><div class="mt">fatigue · monitor 60 days</div></div><span class="cf" style="color:var(--ac)">83%</span></div>
               <div class="drow" data-d="3"><span class="mk" style="background:var(--ar)"></span><div><div class="nm">Edge break</div><div class="mt">drainage-linked · structural</div></div><span class="cf" style="color:var(--ar)">78%</span></div>
             </div>
-            <div id="termVerdict" style="border-top:1px solid var(--line);padding-top:11px;margin-top:4px;opacity:0;transition:opacity .5s">
+            <div id="termVerdict" class="termVerdict" style="border-top:1px solid var(--line);padding-top:11px;margin-top:4px;opacity:0">
               <div class="term-line"><span class="k">SEGMENT</span><span class="v">SH-29 / KM 12.4</span></div>
               <div class="term-line"><span class="k">DEFECTS</span><span class="v">4 found · 2 structural</span></div>
               <div class="term-line"><span class="k">SCORE</span><span class="v">IRI 8.1 <span class="iri-bar"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i></i><i></i><i></i></span></span></div>
@@ -784,9 +900,9 @@ section{scroll-margin-top:64px}
   <div class="wrap">
     <div class="ai-grid">
       <div class="reveal" id="s-ai">
-        <div class="viewer" id="viewer">
+        <div class="viewer" id="viewerAi">
           <div class="vbar"><span class="live"></span>Watch the software find the damage</div>
-          <div class="vimg" id="vimg">
+          <div class="vimg" id="vimgAi">
             <img src="assets/pothole-detect.jpg" alt="A road with potholes">
             <div class="scanbar"></div>
             <div class="bbox" data-d="0" style="left:38%;top:55%;width:28%;height:30%"><span class="tag">POTHOLE</span></div>
@@ -994,14 +1110,156 @@ function pp(r){return `<div class="pp-n">${r.name}</div>
 })();
 
 
-/* AI detect scan */
-(()=>{const v=document.getElementById('viewer');if(!v)return;
-  const boxes=[...document.querySelectorAll('#vimg .bbox')],rows=[...document.querySelectorAll('#aiFound .af')];let timers=[],ran=false;
-  function clear(){timers.forEach(clearTimeout);timers=[];boxes.forEach(b=>b.classList.remove('show'));rows.forEach(r=>r.classList.remove('show'));v.classList.remove('done');}
-  function scan(){clear();v.classList.remove('scan');void v.offsetWidth;v.classList.add('scan');
-    timers.push(setTimeout(()=>v.classList.add('done'),650));
-    [1,0,3].forEach((d,i)=>timers.push(setTimeout(()=>{boxes.find(b=>b.dataset.d==d).classList.add('show');rows.find(r=>r.dataset.d==d).classList.add('show');},700+i*420)));}
-  new IntersectionObserver(en=>{if(en[0].isIntersecting&&!ran){ran=true;scan();}else if(!en[0].isIntersecting){ran=false;}},{threshold:.5}).observe(v);})();
+/* ── Detection Engine scan (detect section) ── */
+(()=>{
+  const vDet=document.getElementById('viewerDetect');if(!vDet)return;
+  const boxesDet=[...document.querySelectorAll('#vimgDetect .bbox')];
+  const rowsDet=[...document.querySelectorAll('#detRows .drow')];
+  const verdict=document.getElementById('termVerdict');
+  const termCount=document.getElementById('termCount');
+  let timers=[],ranDet=false;
+  function clearDet(){timers.forEach(clearTimeout);timers=[];boxesDet.forEach(b=>b.classList.remove('show'));rowsDet.forEach(r=>r.classList.remove('show'));if(verdict)verdict.classList.remove('show'),verdict.style.opacity='0';vDet.classList.remove('done','scan');}
+  function scanDet(){
+    clearDet();void vDet.offsetWidth;vDet.classList.add('scan');
+    timers.push(setTimeout(()=>vDet.classList.add('done'),650));
+    [0,1,2,3].forEach((d,i)=>{
+      timers.push(setTimeout(()=>{
+        const b=boxesDet.find(x=>x.dataset.d==d),r=rowsDet.find(x=>x.dataset.d==d);
+        if(b)b.classList.add('show');if(r)r.classList.add('show');
+      },700+i*380));
+    });
+    timers.push(setTimeout(()=>{
+      if(termCount)termCount.textContent='4 DETECTED';
+      if(verdict){verdict.style.opacity='1';verdict.classList.add('show');}
+    },700+4*380));
+  }
+  new IntersectionObserver(en=>{
+    if(en[0].isIntersecting&&!ranDet){ranDet=true;scanDet();}
+    else if(!en[0].isIntersecting)ranDet=false;
+  },{threshold:.35}).observe(vDet);
+
+  /* RAW / ANALYSED / Replay buttons */
+  const bRaw=document.getElementById('bRaw'),bDet2=document.getElementById('bDet'),bReplay=document.getElementById('bReplay');
+  let showingRaw=false;
+  if(bRaw)bRaw.onclick=()=>{
+    if(showingRaw)return;showingRaw=true;
+    bRaw.classList.add('on');if(bDet2)bDet2.classList.remove('on');
+    boxesDet.forEach(b=>b.style.visibility='hidden');
+  };
+  if(bDet2)bDet2.onclick=()=>{
+    if(!showingRaw)return;showingRaw=false;
+    bDet2.classList.add('on');if(bRaw)bRaw.classList.remove('on');
+    boxesDet.forEach(b=>b.style.visibility='');
+  };
+  if(bReplay)bReplay.onclick=()=>{
+    showingRaw=false;if(bDet2)bDet2.classList.add('on');if(bRaw)bRaw.classList.remove('on');
+    boxesDet.forEach(b=>b.style.visibility='');
+    ranDet=false;scanDet();
+  };
+})();
+
+/* ── AI section scan (ai section) ── */
+(()=>{
+  const vAi=document.getElementById('viewerAi');if(!vAi)return;
+  const boxesAi=[...document.querySelectorAll('#vimgAi .bbox')];
+  const rowsAi=[...document.querySelectorAll('#aiFound .af')];
+  let timers=[],ranAi=false;
+  function clearAi(){timers.forEach(clearTimeout);timers=[];boxesAi.forEach(b=>b.classList.remove('show'));rowsAi.forEach(r=>r.classList.remove('show'));vAi.classList.remove('done','scan');}
+  function scanAi(){
+    clearAi();void vAi.offsetWidth;vAi.classList.add('scan');
+    timers.push(setTimeout(()=>vAi.classList.add('done'),650));
+    [0,1,3].forEach((d,i)=>timers.push(setTimeout(()=>{
+      const b=boxesAi.find(x=>x.dataset.d==d),r=rowsAi.find(x=>x.dataset.d==d);
+      if(b)b.classList.add('show');if(r)r.classList.add('show');
+    },700+i*420)));
+  }
+  new IntersectionObserver(en=>{
+    if(en[0].isIntersecting&&!ranAi){ranAi=true;scanAi();}
+    else if(!en[0].isIntersecting)ranAi=false;
+  },{threshold:.5}).observe(vAi);
+})();
+
+/* ── Resolution canvas renderer ── */
+(()=>{
+  function drawCanvas(canvas){
+    const gsd=parseFloat(canvas.dataset.gsd);
+    const ctx=canvas.getContext('2d');
+    const W=canvas.width,H=canvas.height;
+    ctx.clearRect(0,0,W,H);
+
+    if(gsd>=5){
+      /* Sentinel-2 10m: blocky pixel mosaic, road invisible */
+      const blkW=Math.round(W/6),blkH=Math.round(H/5);
+      const palette=['#6a7a58','#7a8a62','#5e6e4c','#8a9a6e','#6e7e58','#748264','#626e50','#88985e','#707a56','#6c7e5a','#7a8260','#6a7260'];
+      for(let r=0;r<5;r++)for(let c=0;c<6;c++){ctx.fillStyle=palette[(r*6+c)%palette.length];ctx.fillRect(c*blkW,r*blkH,blkW+1,blkH+1);}
+      /* faint road hint, barely distinguishable */
+      ctx.fillStyle='rgba(110,100,88,.25)';ctx.fillRect(W*.38,0,W*.22,H);
+      /* label overlay */
+      ctx.fillStyle='rgba(0,0,0,.32)';ctx.fillRect(0,H-26,W,26);
+      ctx.fillStyle='rgba(255,255,255,.55)';ctx.font='bold 9px monospace';ctx.textAlign='center';
+      ctx.fillText('pothole ≈ 0.05 px — invisible',W/2,H-10);
+
+    }else if(gsd>=2){
+      /* Planet 3m: blurry, road faintly visible */
+      ctx.fillStyle='#6a7a58';ctx.fillRect(0,0,W,H);
+      /* road band */
+      ctx.fillStyle='#7e7a6e';ctx.fillRect(W*.3,0,W*.38,H);
+      /* blur simulation: coarse dither */
+      const blk=10;
+      for(let x=0;x<W;x+=blk)for(let y=0;y<H;y+=blk){
+        const v=(Math.random()-.5)*22;
+        ctx.fillStyle=`rgba(${v>0?255:0},${v>0?255:0},${v>0?255:0},${Math.abs(v)/100})`;
+        ctx.fillRect(x,y,blk,blk);
+      }
+      ctx.fillStyle='rgba(0,0,0,.3)';ctx.fillRect(0,H-26,W,26);
+      ctx.fillStyle='rgba(255,255,255,.55)';ctx.font='bold 9px monospace';ctx.textAlign='center';
+      ctx.fillText('pothole ≈ 0.2 px — invisible',W/2,H-10);
+
+    }else if(gsd>=0.2){
+      /* Maxar 0.3m: road clear, pothole as faint smudge */
+      ctx.fillStyle='#5a5852';ctx.fillRect(0,0,W,H);
+      ctx.fillStyle='#504c46';ctx.fillRect(W*.2,0,W*.6,H);
+      /* surface noise */
+      for(let i=0;i<180;i++){const v=Math.random()>.5?'rgba(255,255,255,.06)':'rgba(0,0,0,.06)';const s=Math.random()*4+2;ctx.fillStyle=v;ctx.fillRect(Math.random()*W,Math.random()*H,s,s);}
+      /* pothole — vague dark smudge */
+      const grad=ctx.createRadialGradient(W*.5,H*.56,0,W*.5,H*.56,W*.14);
+      grad.addColorStop(0,'rgba(22,18,12,.6)');grad.addColorStop(1,'rgba(22,18,12,0)');
+      ctx.fillStyle=grad;ctx.fillRect(0,0,W,H);
+      /* yellow bounding box — barely useful */
+      ctx.strokeStyle='rgba(255,176,32,.75)';ctx.lineWidth=1.5;ctx.setLineDash([4,3]);
+      ctx.strokeRect(W*.34,H*.42,W*.32,H*.28);ctx.setLineDash([]);
+      ctx.fillStyle='rgba(0,0,0,.3)';ctx.fillRect(0,H-26,W,26);
+      ctx.fillStyle='rgba(255,176,32,.8)';ctx.font='bold 9px monospace';ctx.textAlign='center';
+      ctx.fillText('a faint smudge — at ₹30 Cr',W/2,H-10);
+
+    }else{
+      /* Street-level 1.5cm: clear road, sharp pothole, red bbox */
+      ctx.fillStyle='#504e48';ctx.fillRect(0,0,W,H);
+      ctx.fillStyle='#47433e';ctx.fillRect(W*.12,0,W*.76,H);
+      /* asphalt grain */
+      for(let i=0;i<350;i++){const s=Math.random()*2.5+.5;ctx.fillStyle=Math.random()>.5?'rgba(255,255,255,.07)':'rgba(0,0,0,.1)';ctx.fillRect(Math.random()*W,Math.random()*H,s,s);}
+      /* pothole */
+      ctx.fillStyle='#232018';
+      ctx.beginPath();ctx.ellipse(W*.49,H*.57,W*.13,H*.1,-0.2,0,Math.PI*2);ctx.fill();
+      ctx.fillStyle='#141210';
+      ctx.beginPath();ctx.ellipse(W*.48,H*.58,W*.08,H*.065,-0.2,0,Math.PI*2);ctx.fill();
+      /* cracks */
+      ctx.strokeStyle='#38342e';ctx.lineWidth=1.2;
+      [[W*.49,H*.48,W*.43,H*.35],[W*.54,H*.5,W*.64,H*.4],[W*.5,H*.65,W*.56,H*.76]].forEach(([x1,y1,x2,y2])=>{ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();});
+      /* red detection box */
+      ctx.strokeStyle='#FF5A52';ctx.lineWidth=2;ctx.setLineDash([]);
+      ctx.strokeRect(W*.32,H*.44,W*.34,H*.28);
+      /* corner ticks */
+      const m=7,tx=W*.32,ty=H*.44,bx=W*.66,by=H*.72;
+      ctx.strokeStyle='#FF5A52';ctx.lineWidth=2;
+      [[tx,ty,1,1],[bx,ty,-1,1],[tx,by,1,-1],[bx,by,-1,-1]].forEach(([x,y,sx,sy])=>{ctx.beginPath();ctx.moveTo(x+sx*m,y);ctx.lineTo(x,y);ctx.lineTo(x,y+sy*m);ctx.stroke();});
+      ctx.fillStyle='rgba(0,0,0,.3)';ctx.fillRect(0,H-26,W,26);
+      ctx.fillStyle='rgba(52,209,126,.9)';ctx.font='bold 9px monospace';ctx.textAlign='center';
+      ctx.fillText('clearly detectable',W/2,H-10);
+    }
+  }
+  document.querySelectorAll('canvas[data-gsd]').forEach(drawCanvas);
+})();
 
 /* ── dashboard hotzones (click ? to learn what a panel is) ── */
 (()=>{
@@ -1017,10 +1275,25 @@ function pp(r){return `<div class="pp-n">${r.name}</div>
   document.addEventListener('click',e=>{if(!e.target.closest('.hzpop')&&!e.target.closest('.hz'))pop.classList.remove('show');});
 })();
 
-/* "start the story" buttons → scroll into the story */
+/* "See how it works" tour — auto-scrolls through key sections */
 (()=>{
+  const stops=['#how','#twin','#detect','#ai'];
+  let tourT=[];
+  function startTour(){
+    tourT.forEach(clearTimeout);tourT=[];
+    let delay=0;
+    stops.forEach((sel,i)=>{
+      tourT.push(setTimeout(()=>{
+        const el=document.querySelector(sel);
+        if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+      },delay));
+      delay+=3800;
+    });
+  }
   const go=()=>document.getElementById('how').scrollIntoView({behavior:'smooth',block:'start'});
-  ['navTour','heroTour','closeTour'].forEach(id=>{const el=document.getElementById(id);if(el)el.onclick=go;});
+  document.getElementById('navTour')&&(document.getElementById('navTour').onclick=go);
+  document.getElementById('heroTour')&&(document.getElementById('heroTour').onclick=startTour);
+  document.getElementById('closeTour')&&(document.getElementById('closeTour').onclick=startTour);
 })();
 </script>
 </body>
