@@ -303,7 +303,7 @@ footer{background:var(--bg0);border-top:1px solid var(--line);padding:26px 0}
 .pp-n{font-family:var(--fm);font-weight:600;font-size:.78rem;margin-bottom:7px;color:var(--tx);letter-spacing:.02em}
 .pp-r{display:flex;justify-content:space-between;gap:24px;font-family:var(--fm);font-size:.7rem;margin-top:3px}
 .pp-k{color:var(--t3)} .pp-v{font-weight:500}
-/* TWIN — command center */
+/* TWIN - command center */
 #twin{background:var(--bg0);padding:90px 0 0}
 .twin-intro{max-width:1180px;margin:0 auto 30px;padding:0 46px;text-align:center}
 .twin-shell{position:relative;height:88vh;min-height:640px;border-top:1px solid var(--line2);border-bottom:1px solid var(--line2);overflow:hidden;background:#0a0c0d}
@@ -370,7 +370,7 @@ footer{background:var(--bg0);border-top:1px solid var(--line);padding:26px 0}
 .bd.c{background:rgba(255,90,82,.16);color:var(--ar)} .bd.h{background:rgba(255,176,32,.16);color:var(--au)}
 /* hover readout bottom-right */
 .tov-sel{bottom:18px;right:18px;width:300px}
-/* zoom control — lifted to the clear mid-right edge, above panels */
+/* zoom control - lifted to the clear mid-right edge, above panels */
 .twin-shell .leaflet-bottom.leaflet-right{bottom:50%;right:10px;transform:translateY(50%);z-index:700}
 .twin-shell .leaflet-control-zoom{border:1px solid var(--line2)!important;box-shadow:0 6px 20px rgba(0,0,0,.5)}
 .twin-shell .leaflet-control-zoom a{width:34px;height:34px;line-height:34px;font-size:19px}
@@ -514,7 +514,7 @@ section{scroll-margin-top:64px}
 @media(max-width:860px){.reso-row{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:480px){.reso-row{grid-template-columns:repeat(2,1fr)}}
 
-/* ── Source list (imagery strategy — minimal) ── */
+/* ── Source list (imagery strategy - minimal) ── */
 .si{width:36px;height:36px;border-radius:8px;background:rgba(12,154,82,.1);display:flex;align-items:center;justify-content:center;color:var(--ac);flex-shrink:0}
 .si .ic{width:18px;height:18px;flex-shrink:0}
 .srcs-min{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px}
@@ -986,7 +986,7 @@ function pp(r){return `<div class="pp-n">${r.name}</div>
   m.on('zoomend moveend',upd);upd();
 })();
 
-/* FUSION MAP — real Leaflet satellite map with colour-coded roads */
+/* FUSION MAP - real Leaflet satellite map with colour-coded roads */
 (()=>{const el=document.getElementById('fusionMap');if(!el)return;
   const m=L.map('fusionMap',{zoomControl:false,attributionControl:false,scrollWheelZoom:false,dragging:false,doubleClickZoom:false,keyboard:false,touchZoom:false,boxZoom:false});
   L.tileLayer(SAT,SATO).addTo(m);m.fitBounds(KLB,{padding:[4,4]});
@@ -1069,7 +1069,7 @@ function pp(r){return `<div class="pp-n">${r.name}</div>
   document.addEventListener('click',e=>{if(!e.target.closest('.hzpop')&&!e.target.closest('.hz'))pop.classList.remove('show');});
 })();
 
-/* "See how it works" tour — auto-scrolls through key sections */
+/* "See how it works" tour - auto-scrolls through key sections */
 (()=>{
   const stops=['#how','#twin','#sources','#ai'];
   let tourT=[];
