@@ -45,11 +45,12 @@ nav.scrolled{background:rgba(10,12,13,.92);backdrop-filter:blur(14px);border-bot
 .nav-lang:hover{border-color:var(--ac-d);color:var(--ac)}
 [lang="ml"]{font-family:'Noto Sans Malayalam','DM Sans',sans-serif}
 html[lang="ml"] h1,html[lang="ml"] .stitle,html[lang="ml"] .slide-body h3,html[lang="ml"] .problem-q,html[lang="ml"] .close-h{font-family:'Noto Sans Malayalam',serif;font-weight:700;font-style:normal;letter-spacing:0}
-.nav-cta{background:var(--ac);color:#04140b;font-weight:600;font-size:.84rem;padding:9px 16px;border-radius:6px}
+.nav-cta{background:var(--ac);color:#04140b;font-weight:600;font-size:.84rem;padding:9px 16px;border-radius:6px;white-space:nowrap}
 .nav-cta:hover{background:#5fe09b}
+.nav-cta-short{display:none}
 
 /* hero */
-#hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;background:var(--bg0)}
+#hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;background:var(--bg0)}
 #heroSat{position:absolute;inset:0;z-index:0;filter:saturate(.9) brightness(.5) contrast(1.1)}
 .hero-grad{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(10,12,13,.8),rgba(10,12,13,.55) 40%,rgba(10,12,13,.92))}
 .hero-in{position:relative;z-index:3;max-width:880px;margin:0 auto;padding:90px 26px 40px;text-align:center}
@@ -63,6 +64,8 @@ h1 em{font-style:italic;color:var(--gold)}
 .btn-a:hover{background:#5fe09b;transform:translateY(-2px)}
 .btn-b{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line2);padding:15px 28px;border-radius:8px;font-weight:500;font-size:1rem;transition:border-color .2s,background .2s;backdrop-filter:blur(6px)}
 .btn-b:hover{border-color:var(--ac-d);background:rgba(52,209,126,.06)}
+#hero .btn-b{border-color:rgba(255,255,255,.55);color:#e7ecea;background:rgba(255,255,255,.08)}
+#hero .btn-b:hover{border-color:var(--ac);background:rgba(52,209,126,.15);color:#fff}
 .hero-stats{margin-top:46px;display:inline-flex;gap:0;border:1px solid var(--line);border-radius:10px;background:rgba(10,12,13,.5);backdrop-filter:blur(6px)}
 .hs{padding:15px 28px;border-right:1px solid var(--line)}
 .hs:last-child{border-right:0}
@@ -339,7 +342,7 @@ footer{background:var(--bg0);border-top:1px solid var(--line);padding:26px 0}
 .al-th .ex{position:absolute;bottom:1px;right:2px;font-family:var(--fm);font-size:.66rem;font-weight:600;color:var(--tx);background:rgba(0,0,0,.55);width:13px;height:13px;display:flex;align-items:center;justify-content:center;border-radius:2px;line-height:1}
 .al:hover .al-th{box-shadow:0 0 0 1px var(--ac)}
 /* lightbox */
-.lightbox{position:absolute;inset:0;z-index:900;background:rgba(5,8,9,.84);backdrop-filter:blur(7px);display:none;align-items:center;justify-content:center;padding:26px}
+.lightbox{position:fixed;inset:0;z-index:9000;background:rgba(5,8,9,.84);backdrop-filter:blur(7px);display:none;align-items:center;justify-content:center;padding:26px}
 .lightbox.show{display:flex}
 .lb{width:min(540px,94%);max-height:92%;overflow:auto;border-radius:5px;background:var(--panel);box-shadow:0 30px 90px rgba(0,0,0,.65)}
 .lb-top{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid var(--line);font-family:var(--fm);font-size:.74rem;letter-spacing:.04em;color:var(--tx);font-weight:600}
@@ -430,7 +433,10 @@ section{scroll-margin-top:64px}
 .fwire{fill:none;stroke:var(--line2);stroke-width:1.5;stroke-dasharray:5 4}
 .fwire.pri{fill:none;stroke:var(--ac-d);stroke-width:2;stroke-dasharray:none}
 .fcore{border:1px solid var(--ac-d);border-radius:12px;overflow:hidden;background:var(--panel)}
-.fcore-map{height:130px;background:linear-gradient(150deg,#0b1b10,#091410,#0d1a0f);position:relative;overflow:hidden;display:flex;align-items:flex-start;justify-content:flex-start;padding:8px}
+.fcore-map{height:160px;background:linear-gradient(160deg,#daf0e6,#eaf8f0,#d5ece0);position:relative;overflow:hidden;display:flex;align-items:flex-start;justify-content:flex-start;padding:8px}
+.fcore-tag{z-index:2;position:relative;background:rgba(255,255,255,.75);border-radius:4px;padding:3px 8px}
+.fcore-tag .sq{animation:hzpulse 1.5s ease-in-out infinite}
+.fmap-svg{position:absolute;inset:0;width:100%;height:100%;opacity:1}
 .fcore-tag{font-family:var(--fm);font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ac);display:flex;align-items:center;gap:6px}
 .fcore-tag .sq{width:6px;height:6px;background:var(--ac);border-radius:50%;animation:hzpulse 1.5s ease-in-out infinite}
 .fcore-cap{padding:12px 14px;border-top:1px solid rgba(12,154,82,.2)}
@@ -488,6 +494,102 @@ section{scroll-margin-top:64px}
 @media(max-width:860px){
   .dgrid{grid-template-columns:1fr}
 }
+
+/* ── Resolution comparison (sources section) ── */
+.reso-card{border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:24px 22px;margin-bottom:32px;box-shadow:0 4px 18px rgba(20,40,30,.06)}
+.rt{font-family:var(--fd);font-size:1.25rem;font-weight:700;color:var(--tx);margin-bottom:8px}
+.rs{font-size:.92rem;color:var(--t2);margin-bottom:20px;line-height:1.55}
+.rs em{font-style:italic;color:var(--gold)}
+.reso-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.rframe{display:flex;flex-direction:column;gap:7px}
+.rframe.best .rcanvas{border-color:var(--ac-d);box-shadow:0 0 0 1.5px var(--ac-d)}
+.rcanvas{position:relative;border:1px solid var(--line2);border-radius:9px;overflow:hidden;background:#e8ede9}
+.rcanvas canvas{width:100%;height:auto;display:block}
+.gsd{position:absolute;top:6px;left:7px;font-family:var(--fm);font-size:.6rem;font-weight:700;background:rgba(0,0,0,.58);color:#fff;padding:2px 7px;border-radius:3px;z-index:2;letter-spacing:.04em}
+.rname{font-size:.82rem;color:var(--tx);font-weight:600}
+.rname span{color:var(--t3);font-weight:400}
+.rvd{display:flex;align-items:center;gap:6px;font-size:.75rem;color:var(--t2);font-weight:500;line-height:1.4}
+.rvd.no{color:var(--ar)}.rvd.warn{color:var(--au)}.rvd.ok{color:var(--ac)}
+.reso-foot{margin-top:18px;display:flex;align-items:flex-start;gap:9px;font-size:.85rem;color:var(--t2);padding-top:16px;border-top:1px solid var(--line);line-height:1.5}
+.reso-foot>.ic-sm{flex-shrink:0;margin-top:2px;color:var(--ac)}
+@media(max-width:860px){.reso-row{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.reso-row{grid-template-columns:repeat(2,1fr)}}
+
+/* ── Source cards (imagery strategy) ── */
+.scards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
+.scard{position:relative;border:1px solid var(--line);border-radius:12px;background:var(--panel);padding:18px 16px;box-shadow:0 4px 14px rgba(20,40,30,.05);transition:box-shadow .2s}
+.scard:hover{box-shadow:0 6px 24px rgba(20,40,30,.1)}
+.scard.rec{border-color:var(--ac-d);background:rgba(12,154,82,.04)}
+.scard.no{opacity:.82}.scard.cls{opacity:.82}
+.tagline{position:absolute;top:-1px;right:14px;font-family:var(--fm);font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;background:var(--ac);color:#04140b;border-radius:0 0 6px 6px}
+.scard.cls .tagline{background:var(--line2);color:var(--t3)}
+.si{width:36px;height:36px;border-radius:8px;background:rgba(12,154,82,.1);display:flex;align-items:center;justify-content:center;color:var(--ac);margin-bottom:10px}
+.si .ic{width:18px;height:18px;flex-shrink:0}
+.scat{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);margin-bottom:2px}
+.sname{font-size:.92rem;font-weight:600;color:var(--tx);margin-bottom:10px}
+.srow{display:flex;align-items:center;gap:5px;font-size:.78rem;margin-bottom:4px}
+.srow .k{color:var(--t3);flex-shrink:0}
+.srow .k::after{content:':'}
+.srow .v{color:var(--tx);font-weight:500}
+.pips{display:flex;gap:3px;align-items:center}
+.pips i{display:inline-block;width:10px;height:10px;border-radius:2px;background:var(--line2)}
+.pips i.g{background:var(--ac)}.pips i.r{background:var(--ar)}
+.svd{margin-top:10px;font-size:.76rem;color:var(--t2);line-height:1.5;padding-top:10px;border-top:1px solid var(--line)}
+.svd.ok{color:var(--ac)}.svd.warn{color:var(--au)}.svd.no{color:var(--ar)}.svd.cls{color:var(--t3)}
+@media(max-width:860px){.scards{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:500px){.scards{grid-template-columns:1fr}}
+
+/* ── Missing CSS rules ── */
+.termVerdict{transition:opacity .5s}
+.termVerdict.show{opacity:1!important}
+.fcore-card{border:1px solid var(--ac-d);border-radius:12px;overflow:hidden;background:var(--panel)}
+.twin-bar{display:flex;align-items:center;gap:10px;padding:10px 14px;font-family:var(--fm);font-size:.66rem;color:var(--t2)}
+.al-thumb{position:relative;width:48px;height:40px;border:1px solid;border-radius:3px;overflow:hidden;flex-shrink:0}
+.al-thumb img{width:100%;height:100%;object-fit:cover}
+.al-thumb.p{border-color:var(--ar)}.al-thumb.w{border-color:var(--au)}
+
+/* ── Nav CTA mobile fit (prevent overflow at 390px) ── */
+@media(max-width:440px){
+  .nav-cta{font-size:.74rem;padding:6px 10px}
+  .nav-lang{font-size:.76rem;padding:5px 8px}
+  nav{padding:0 14px}
+  .nav-cta-full{display:none}
+  .nav-cta-short{display:inline}
+}
+
+/* ── Hero tablet void fix (820px etc.) ── */
+@media(max-width:900px){
+  #hero{min-height:auto;padding-top:88px;padding-bottom:64px}
+}
+/* ── Hero mobile void fix ── */
+@media(max-width:700px){
+  #hero{min-height:auto;padding-top:64px;padding-bottom:0}
+  .hero-in{padding:36px 22px 40px}
+  .hero-stats{display:grid;grid-template-columns:repeat(3,1fr);width:100%;border-radius:10px}
+  .hs{padding:12px 10px;border-right:1px solid var(--line);text-align:center}
+  .hs:last-child{border-right:0}
+}
+
+/* ── Mobile/tablet section padding ── */
+@media(max-width:860px){
+  section{padding:56px 0}
+  #twin{padding:40px 0 0}
+}
+@media(max-width:600px){
+  section{padding:40px 0}
+  #twin{padding:28px 0 0}
+}
+
+/* ── Twin dashboard mobile: map height + zoom ── */
+@media(max-width:900px){
+  #twinMap{height:55vh;max-height:460px}
+  .tzoom{top:54px;bottom:auto;right:12px;transform:none}
+  .tzoom button{width:38px;height:38px;font-size:1.5rem}
+  #twin{padding-top:40px}
+}
+@media(max-width:600px){
+  #twinMap{height:52vh;max-height:360px}
+}
 </style>
 </head>
 <body>
@@ -510,7 +612,7 @@ section{scroll-margin-top:64px}
   <div class="nav-r">
     <a href="simple.html" class="nav-lang" lang="en">English</a>
     <a href="index.html" class="nav-tech">സാങ്കേതികം →</a>
-    <button class="nav-cta" id="navTour">എങ്ങനെ പ്രവർത്തിക്കുന്നു</button>
+    <button class="nav-cta" id="navTour"><span class="nav-cta-full">എങ്ങനെ പ്രവർത്തിക്കുന്നു</span><span class="nav-cta-short">►&nbsp;കാണൂ</span></button>
   </div>
 </nav>
 
@@ -568,7 +670,7 @@ section{scroll-margin-top:64px}
     <div class="tzoom"><button id="tzIn" aria-label="Zoom in">+</button><button id="tzOut" aria-label="Zoom out">−</button></div>
     <div class="hzpop" id="hzpop"><div class="hzpop-t" id="hzpopT"></div><div class="hzpop-d" id="hzpopD"></div></div>
     <div class="tov tbar">
-      <div class="l"><span class="live"><span class="sq"></span>പിഡബ്ല്യുഡി ശൃംഖല · തത്സമയം</span><span id="tbZoom">ZOOM 8 · STATE</span></div>
+      <div class="l"><span class="live"><span class="sq"></span>PWD ശൃംഖല · തത്സമയം</span><span id="tbZoom">ZOOM 8 · സംസ്ഥാനം</span></div>
       <div class="r"><span>ഭാഗങ്ങൾ <b>18</b></span><span>നിരീക്ഷണം <b>29,523 KM</b></span><span id="tbCoord">09.5°N 76.5°E</span></div>
     </div>
     <div id="twinMap"></div>
@@ -591,7 +693,7 @@ section{scroll-margin-top:64px}
         </div>
         <div class="al" data-img="assets/road-damage.jpg" data-pos="50% 56%" data-title="MDR Palakkad–Mannarkkad" data-loc="10.99°N 76.48°E" data-cond="fair" data-label="SURFACE CRACKING" data-conf="88%" data-src="APP FLEET ×7">
           <span class="mk" style="background:var(--au)"></span>
-          <div class="al-c"><div class="x">MDR പാലക്കാട്–മണ്ണാർക്കാട്: മഴയ്ക്കുശേഷം പരുക്കൻ കൂടി</div><div class="t">5h · APP FLEET ×7</div></div>
+          <div class="al-c"><div class="x">MDR പാലക്കാട്–മണ്ണാർക്കാട്: മഴയ്ക്കുശേഷം പരുക്കൻ കൂടി</div><div class="t">5h · ആപ്പ് ഫ്ലീറ്റ് ×7</div></div>
           <div class="al-th w"><img src="assets/road-damage.jpg" style="object-position:50% 56%"><span class="ex">+</span></div>
         </div>
         <div class="al" data-img="assets/pothole-detect.jpg" data-pos="24% 82%" data-title="SH-33 Kochi–Munnar" data-loc="10.09°N 77.06°E" data-cond="poor" data-label="EDGE FAILURE" data-conf="91%" data-src="DRONE VERIFY">
@@ -645,14 +747,14 @@ section{scroll-margin-top:64px}
 <section id="fusion"><div class="hr"></div>
   <div class="wrap">
     <div class="fusion reveal">
-      <div class="fhead"><span class="kicker">Data Fusion</span><h3 class="ftitle">One twin, <em>many feeds</em> — prioritised, not exclusive</h3></div>
+      <div class="fhead"><span class="kicker">ഡേറ്റ ഫ്യൂഷൻ</span><h3 class="ftitle">ഒരൊറ്റ ട്വിൻ, <em>പല ഉറവിടങ്ങൾ</em> — മുൻഗണനയോടെ, ഒഴിവാക്കലില്ലാതെ</h3></div>
       <div class="fdiag">
         <div class="fsrcs">
-          <div class="fnode pri"><span class="fi"><svg class="ic"><use href="#i-camera"/></svg></span><div><div class="fn-n">Street View</div><div class="fn-b">Priority 1 · now</div></div></div>
-          <div class="fnode"><span class="fi"><svg class="ic"><use href="#i-phone"/></svg></span><div><div class="fn-n">App Fleet</div><div class="fn-b">Phase 2 · scaling</div></div></div>
-          <div class="fnode"><span class="fi"><svg class="ic"><use href="#i-drone"/></svg></span><div><div class="fn-n">Drone Survey</div><div class="fn-b">On demand</div></div></div>
-          <div class="fnode"><span class="fi"><svg class="ic"><use href="#i-satellite"/></svg></span><div><div class="fn-n">Satellite</div><div class="fn-b">Context layer</div></div></div>
-          <div class="fnode"><span class="fi"><svg class="ic"><use href="#i-target"/></svg></span><div><div class="fn-n">Tasked Satellite</div><div class="fn-b">If justified</div></div></div>
+          <div class="fnode pri"><span class="fi"><svg class="ic"><use href="#i-camera"/></svg></span><div><div class="fn-n">സ്ട്രീറ്റ് വ്യൂ</div><div class="fn-b">മുൻഗണന 1 · ഇപ്പോൾ</div></div></div>
+          <div class="fnode"><span class="fi"><svg class="ic"><use href="#i-phone"/></svg></span><div><div class="fn-n">ആപ്പ് ഫ്ലീറ്റ്</div><div class="fn-b">ഘട്ടം 2 · വ്യാപനം</div></div></div>
+          <div class="fnode"><span class="fi"><svg class="ic"><use href="#i-drone"/></svg></span><div><div class="fn-n">ഡ്രോൺ സർവേ</div><div class="fn-b">ആവശ്യാനുസരണം</div></div></div>
+          <div class="fnode"><span class="fi"><svg class="ic"><use href="#i-satellite"/></svg></span><div><div class="fn-n">ഉപഗ്രഹം</div><div class="fn-b">സന്ദർഭ ലേഖ</div></div></div>
+          <div class="fnode"><span class="fi"><svg class="ic"><use href="#i-target"/></svg></span><div><div class="fn-n">നിർദ്ദിഷ്ട ഉപഗ്രഹം</div><div class="fn-b">ന്യായമെങ്കിൽ</div></div></div>
         </div>
         <svg class="fwires" viewBox="0 0 120 300" preserveAspectRatio="none">
           <path class="fwire pri" d="M0 30 C70 30 55 150 120 150"/>
@@ -662,14 +764,35 @@ section{scroll-margin-top:64px}
           <path class="fwire" d="M0 270 C70 270 55 150 120 150"/>
         </svg>
         <div class="fcore brk">
-          <div class="fcore-map" id="fusionMap"><span class="fcore-tag"><span class="sq"></span>LIVE TWIN</span></div>
-          <div class="fcore-cap"><div class="fc-t">Digital Twin</div><div class="fc-s">A live map of every road's condition, combined from all sources</div></div>
+          <div class="fcore-map" id="fusionMap">
+            <span class="fcore-tag"><span class="sq"></span>LIVE TWIN</span>
+            <svg class="fmap-svg" viewBox="0 0 220 160" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+              <rect width="220" height="160" fill="#c8ecd8" rx="0"/>
+              <path d="M125 2 C118 18 112 34 109 52 C106 68 107 84 104 100 C101 116 96 130 94 145 C92 155 90 158 90 158 L86 158 C86 148 88 136 90 122 C93 106 97 90 98 74 C99 58 97 42 100 26 C103 12 108 4 114 2 Z" fill="#a8d9bb" opacity=".7"/>
+              <path d="M109 8 Q108 40 106 72 Q104 104 102 140" stroke="#0c9a52" stroke-width="2.2" fill="none" stroke-linecap="round" opacity=".9"/>
+              <path d="M86 30 Q96 48 104 70" stroke="#FFB020" stroke-width="1.8" fill="none" stroke-linecap="round" opacity=".85"/>
+              <path d="M122 55 Q114 62 106 72 Q98 80 88 88" stroke="#FF5A52" stroke-width="2" fill="none" stroke-linecap="round" opacity=".85"/>
+              <path d="M104 100 Q116 96 128 90" stroke="#0c9a52" stroke-width="1.6" fill="none" stroke-linecap="round" opacity=".8"/>
+              <path d="M102 125 Q90 120 80 114" stroke="#FFB020" stroke-width="1.5" fill="none" stroke-linecap="round" opacity=".7"/>
+              <circle cx="95" cy="88" r="5" fill="#FF5A52" opacity=".9"/>
+              <circle cx="95" cy="88" r="9" fill="none" stroke="#FF5A52" stroke-width="1.2" opacity=".4"/>
+              <circle cx="106" cy="50" r="3.5" fill="#0c9a52" opacity=".9"/>
+              <circle cx="103" cy="115" r="3" fill="#FFB020" opacity=".9"/>
+              <line x1="0" y1="40" x2="220" y2="40" stroke="#0c9a52" stroke-width=".4" opacity=".2"/>
+              <line x1="0" y1="80" x2="220" y2="80" stroke="#0c9a52" stroke-width=".4" opacity=".2"/>
+              <line x1="0" y1="120" x2="220" y2="120" stroke="#0c9a52" stroke-width=".4" opacity=".2"/>
+              <line x1="55" y1="0" x2="55" y2="160" stroke="#0c9a52" stroke-width=".4" opacity=".2"/>
+              <line x1="110" y1="0" x2="110" y2="160" stroke="#0c9a52" stroke-width=".4" opacity=".2"/>
+              <line x1="165" y1="0" x2="165" y2="160" stroke="#0c9a52" stroke-width=".4" opacity=".2"/>
+            </svg>
+          </div>
+          <div class="fcore-cap"><div class="fc-t">ഡിജിറ്റൽ ട്വിൻ</div><div class="fc-s">എല്ലാ ഉറവിടങ്ങളിൽ നിന്നുമുള്ള വിവരം ഒന്നിച്ചുചേർത്ത്, ഓരോ റോഡിന്റെയും തത്സമയ അവസ്ഥ ഒരു ഭൂപടത്തിൽ</div></div>
         </div>
       </div>
       <div class="fout">
-        <span><svg class="ic-sm"><use href="#i-map"/></svg>Live condition map</span>
-        <span><svg class="ic-sm"><use href="#i-trending"/></svg>Priority repair queue</span>
-        <span><svg class="ic-sm"><use href="#i-shield"/></svg>Proof-of-work record</span>
+        <span><svg class="ic-sm"><use href="#i-map"/></svg>തത്സമയ അവസ്ഥ ഭൂപടം</span>
+        <span><svg class="ic-sm"><use href="#i-trending"/></svg>മുൻഗണനാ അറ്റകുറ്റ ക്രമം</span>
+        <span><svg class="ic-sm"><use href="#i-shield"/></svg>ജോലി-തെളിവ് രേഖ</span>
       </div>
     </div>
   </div>
@@ -679,15 +802,15 @@ section{scroll-margin-top:64px}
 <section id="detect"><div class="hr"></div>
   <div class="wrap">
     <div class="shead reveal">
-      <span class="kicker">Detection Engine</span>
-      <h2 class="stitle">From one frame to a <em>scored defect</em>, automatically</h2>
-      <p class="ssub">Every image — from street-level imagery or a phone in a moving vehicle — runs through a vision model trained on Indian road conditions. It locates and classifies each defect in seconds. Scroll in to watch a real frame get analysed.</p>
+      <span class="kicker">കണ്ടെത്തൽ എഞ്ചിൻ</span>
+      <h2 class="stitle">ഒരൊറ്റ ദൃശ്യചിത്രത്തിൽ നിന്ന് <em>ഒരു സ്കോർ ചെയ്ത തകരാർ</em>, യാന്ത്രികമായി</h2>
+      <p class="ssub">സ്ട്രീറ്റ്-ലെവൽ ചിത്രം ആകട്ടെ, ഓടുന്ന വാഹനത്തിലെ ഫോൺ ആകട്ടെ — ഓരോ ദൃശ്യചിത്രവും ഭാരതീയ റോഡ് സ്ഥിതിഗതികൾ പഠിച്ച ഒരു ദൃഷ്ടി-മോഡലിലൂടെ കടന്നുപോകുന്നു. ഓരോ തകരാറും നിമിഷനേരം കൊണ്ട് കണ്ടെത്തി തരംതിരിക്കുന്നു. ഒരു യഥാർത്ഥ ദൃശ്യചിത്രം വിശകലനം ചെയ്യുന്നത് കാണാൻ ഇങ്ങോട്ട് സ്ക്രോൾ ചെയ്യൂ.</p>
     </div>
     <div class="dgrid">
       <div class="reveal d1">
-        <div class="viewer" id="viewer">
+        <div class="viewer" id="viewerDetect">
           <div class="vbar"><span>FRAME · SH-29 · 11.067°N 76.074°E</span><span class="r"><span class="sq"></span>YOLO-v8 / KERALA-ROADS</span></div>
-          <div class="vimg" id="vimg">
+          <div class="vimg" id="vimgDetect">
             <img src="assets/pothole-detect.jpg" alt="Road surface with potholes and cracking">
             <div class="scanbar"></div>
             <div class="bbox poor" data-d="0" style="left:38%;top:55%;width:28%;height:30%"><span class="btag">POTHOLE · 96%</span><span class="crn a"></span><span class="crn b"></span></div>
@@ -697,26 +820,26 @@ section{scroll-margin-top:64px}
           </div>
         </div>
         <div class="vctl">
-          <span class="seg-toggle"><button id="bRaw">RAW</button><button id="bDet" class="on">ANALYSED</button></span>
-          <button class="vreplay" id="bReplay"><svg class="ic-sm" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>Replay scan</button>
+          <span class="seg-toggle"><button id="bRaw">RAW</button><button id="bDet" class="on">വിശകലനം</button></span>
+          <button class="vreplay" id="bReplay"><svg class="ic-sm" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>വീണ്ടും സ്കാൻ</button>
         </div>
       </div>
       <div class="reveal d2">
         <div class="term brk">
-          <div class="term-h"><span>Analysis Output</span><span id="termCount">— DETECTED</span></div>
+          <div class="term-h"><span>വിശകലന ഫലം</span><span id="termCount">— കണ്ടെത്തി</span></div>
           <div class="term-b">
             <div class="det-rows" id="detRows">
-              <div class="drow" data-d="0"><span class="mk" style="background:var(--ar)"></span><div><div class="nm">Pothole</div><div class="mt">~0.4 m² · depth flag · structural</div></div><span class="cf" style="color:var(--ar)">96%</span></div>
-              <div class="drow" data-d="1"><span class="mk" style="background:var(--au)"></span><div><div class="nm">Surface erosion</div><div class="mt">aggregate loss · widening</div></div><span class="cf" style="color:var(--au)">89%</span></div>
-              <div class="drow" data-d="2"><span class="mk" style="background:var(--ac)"></span><div><div class="nm">Alligator cracking</div><div class="mt">fatigue · monitor 60 days</div></div><span class="cf" style="color:var(--ac)">83%</span></div>
-              <div class="drow" data-d="3"><span class="mk" style="background:var(--ar)"></span><div><div class="nm">Edge break</div><div class="mt">drainage-linked · structural</div></div><span class="cf" style="color:var(--ar)">78%</span></div>
+              <div class="drow" data-d="0"><span class="mk" style="background:var(--ar)"></span><div><div class="nm">കുഴി</div><div class="mt">~0.4 m² · ആഴ-അടയാളം · ഘടനാ</div></div><span class="cf" style="color:var(--ar)">96%</span></div>
+              <div class="drow" data-d="1"><span class="mk" style="background:var(--au)"></span><div><div class="nm">പ്രതല ക്ഷയം</div><div class="mt">ഉരുൾ ഇടിഞ്ഞ് · വ്യാപനം</div></div><span class="cf" style="color:var(--au)">89%</span></div>
+              <div class="drow" data-d="2"><span class="mk" style="background:var(--ac)"></span><div><div class="nm">ആലിഗേറ്റർ വിള്ളൽ</div><div class="mt">ക്ഷീണം · 60 ദിവസം നിരീക്ഷണം</div></div><span class="cf" style="color:var(--ac)">83%</span></div>
+              <div class="drow" data-d="3"><span class="mk" style="background:var(--ar)"></span><div><div class="nm">വക്ക് തകർച്ച</div><div class="mt">ഡ്രെയിനേജ് ബന്ധിത · ഘടനാ</div></div><span class="cf" style="color:var(--ar)">78%</span></div>
             </div>
-            <div id="termVerdict" style="border-top:1px solid var(--line);padding-top:11px;margin-top:4px;opacity:0;transition:opacity .5s">
-              <div class="term-line"><span class="k">SEGMENT</span><span class="v">SH-29 / KM 12.4</span></div>
-              <div class="term-line"><span class="k">DEFECTS</span><span class="v">4 found · 2 structural</span></div>
-              <div class="term-line"><span class="k">SCORE</span><span class="v">IRI 8.1 <span class="iri-bar"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i></i><i></i><i></i></span></span></div>
-              <div class="term-line"><span class="k">STATUS</span><span class="v bad">▮ FLAGGED POOR → PRIORITY QUEUE</span></div>
-              <div class="term-line"><span class="k">EVIDENCE</span><span class="v">frame stored · 11.067°N 76.074°E <span class="cursor"></span></span></div>
+            <div id="termVerdict" class="termVerdict" style="border-top:1px solid var(--line);padding-top:11px;margin-top:4px;opacity:0">
+              <div class="term-line"><span class="k">ഭാഗം</span><span class="v">SH-29 / KM 12.4</span></div>
+              <div class="term-line"><span class="k">തകരാറ്</span><span class="v">4 കണ്ടെത്തി · 2 ഘടനാ</span></div>
+              <div class="term-line"><span class="k">സ്കോർ</span><span class="v">IRI 8.1 <span class="iri-bar"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i></i><i></i><i></i></span></span></div>
+              <div class="term-line"><span class="k">സ്ഥിതി</span><span class="v bad">▮ POOR ഫ്ലാഗ് → മുൻഗണനാ ക്രമം</span></div>
+              <div class="term-line"><span class="k">തെളിവ്</span><span class="v">ദൃശ്യചിത്രം സൂക്ഷിച്ചു · 11.067°N 76.074°E <span class="cursor"></span></span></div>
             </div>
           </div>
         </div>
@@ -729,48 +852,48 @@ section{scroll-margin-top:64px}
 <section id="sources"><div class="hr"></div>
   <div class="wrap">
     <div class="shead mid reveal">
-      <span class="kicker">Imagery Strategy</span>
-      <h2 class="stitle">Every source feeds the twin — <em>street view just goes first</em></h2>
-      <p class="ssub">Satellites, drones, and the app fleet all flow into one model. The question is only where to start — and for actually seeing a pothole, the answer is street level.</p>
+      <span class="kicker">ചിത്ര തന്ത്രം</span>
+      <h2 class="stitle">ഓരോ ഉറവിടവും ട്വിന്നിലേക്ക് ഒഴുകുന്നു — <em>സ്ട്രീറ്റ് ദൃശ്യം ആദ്യം</em></h2>
+      <p class="ssub">ഉപഗ്രഹങ്ങൾ, ഡ്രോണുകൾ, ആപ്പ് ഫ്ലീറ്റ് — ഒക്കെ ഒരൊറ്റ മോഡലിലേക്ക് ഒഴുകുന്നു. ചോദ്യം: എവിടെ തുടങ്ങും? — കുഴി കാണാൻ, ഉത്തരം: നിലത്ത്.</p>
     </div>
 
     <div class="reso-card reveal">
-      <div class="rt">The resolution reality</div>
-      <div class="rs">A pothole is 20–60 cm across. Here is the <em>same pothole</em>, shown at the level of detail each source can actually capture. From space it's a blur; only at street level can you clearly see it.</div>
+      <div class="rt">റെസൊലൂഷൻ യാഥാർത്ഥ്യം</div>
+      <div class="rs">ഒരു കുഴിക്ക് 20–60 cm വ്യാസം. ഇതാ <em>ഒരേ കുഴി</em>, ഓരോ ഉറവിടത്തിന്റെ ശേഷിയിൽ. ബഹിരാകാശത്ത് നിന്ന് മങ്ങലും; സ്ട്രീറ്റ് ലെവലിൽ മാത്രം വ്യക്തം.</div>
       <div class="reso-row" id="resoRow">
-        <div class="rframe"><div class="rcanvas"><span class="gsd">10 m/px</span><canvas data-gsd="10" width="240" height="180"></canvas></div><div class="rname">Sentinel-2 <span>· open</span></div><div class="rvd no"><svg class="ic-sm" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>≈ 0.05 px — invisible</div></div>
-        <div class="rframe"><div class="rcanvas"><span class="gsd">3 m/px</span><canvas data-gsd="3" width="240" height="180"></canvas></div><div class="rname">Planet <span>· commercial</span></div><div class="rvd no"><svg class="ic-sm" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>≈ 0.2 px — invisible</div></div>
-        <div class="rframe"><div class="rcanvas"><span class="gsd">0.3 m/px</span><canvas data-gsd="0.3" width="240" height="180"></canvas></div><div class="rname">Maxar tasked <span>· ₹₹₹₹</span></div><div class="rvd warn"><svg class="ic-sm"><use href="#i-alert"/></svg>A faint smudge — at ₹30 Cr</div></div>
-        <div class="rframe best"><div class="rcanvas"><span class="gsd">ground</span><canvas data-gsd="0.015" width="240" height="180"></canvas></div><div class="rname">Street / App fleet <span>· lead</span></div><div class="rvd ok"><svg class="ic-sm" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Clearly detectable</div></div>
+        <div class="rframe"><div class="rcanvas"><span class="gsd">10 m/px</span><canvas data-gsd="10" width="240" height="180"></canvas></div><div class="rname">Sentinel-2 <span>· ഓപ്പൺ</span></div><div class="rvd no"><svg class="ic-sm" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>≈ 0.05 px — അദൃശ്യം</div></div>
+        <div class="rframe"><div class="rcanvas"><span class="gsd">3 m/px</span><canvas data-gsd="3" width="240" height="180"></canvas></div><div class="rname">Planet <span>· വ്യാപാരം</span></div><div class="rvd no"><svg class="ic-sm" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>≈ 0.2 px — അദൃശ്യം</div></div>
+        <div class="rframe"><div class="rcanvas"><span class="gsd">0.3 m/px</span><canvas data-gsd="0.3" width="240" height="180"></canvas></div><div class="rname">Maxar tasked <span>· ₹₹₹₹</span></div><div class="rvd warn"><svg class="ic-sm"><use href="#i-alert"/></svg>ഒരു മങ്ങൽ മാത്രം — ₹30 Cr-ന്</div></div>
+        <div class="rframe best"><div class="rcanvas"><span class="gsd">ground</span><canvas data-gsd="0.015" width="240" height="180"></canvas></div><div class="rname">സ്ട്രീറ്റ് / ആപ്പ് ഫ്ലീറ്റ് <span>· മുൻ‌നിര</span></div><div class="rvd ok"><svg class="ic-sm" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>വ്യക്തമായി കണ്ടെത്താം</div></div>
       </div>
-      <div class="reso-foot"><svg class="ic-sm"><use href="#i-satellite"/></svg><span>Satellites still earn their place — the network-wide basemap and macro change-detection. But to actually <b>see a defect</b> you must be on the ground, which is why street imagery and the app fleet lead.</span></div>
+      <div class="reso-foot"><svg class="ic-sm"><use href="#i-satellite"/></svg><span>ഉപഗ്രഹങ്ങൾ ഇനിയും ഉപകാരപ്പെടുന്നു — ശൃംഖലയ്ക്കൊട്ടാകെ ഒരു ബേസ്‌മാപ്പും ബൃഹദ് മാറ്റ-കണ്ടെത്തലും. പക്ഷേ ഒരു തകരാർ <b>കാണണമെങ്കിൽ</b> നിലത്ത് ആകണം — അതുകൊണ്ടാണ് സ്ട്രീറ്റ് ചിത്രവും ആപ്പ് ഫ്ലീറ്റും മുൻ‌നിരയിൽ.</span></div>
     </div>
 
     <div class="scards reveal">
-      <div class="scard"><div class="si"><svg class="ic"><use href="#i-satellite"/></svg></div><div class="scat">Open Satellite</div><div class="sname">Sentinel-2 / Landsat</div>
-        <div class="srow"><span class="k">Resolution</span><span class="v">10 m/px</span></div><div class="srow"><span class="k">Revisit</span><span class="v">5 days</span></div>
-        <div class="srow"><span class="k">Cost</span><span class="pips"><i class="g"></i><i></i><i></i><i></i><i></i></span></div>
-        <div class="svd ok">Free network context &amp; change-detection — our basemap, not our detector.</div></div>
-      <div class="scard"><div class="si"><svg class="ic"><use href="#i-satellite"/></svg></div><div class="scat">Commercial Satellite</div><div class="sname">Planet / SPOT</div>
-        <div class="srow"><span class="k">Resolution</span><span class="v">0.5–3 m</span></div><div class="srow"><span class="k">Revisit</span><span class="v">Daily</span></div>
-        <div class="srow"><span class="k">Cost</span><span class="pips"><i class="r"></i><i class="r"></i><i class="r"></i><i></i><i></i></span></div>
-        <div class="svd warn">₹1.5–5 Cr/yr — still too coarse for reliable pothole detection.</div></div>
-      <div class="scard no"><div class="si"><svg class="ic"><use href="#i-target"/></svg></div><div class="scat">Tasked Satellite</div><div class="sname">Maxar / Pléiades</div>
-        <div class="srow"><span class="k">Resolution</span><span class="v">0.3 m</span></div><div class="srow"><span class="k">Full survey</span><span class="v" style="color:var(--ar)">~₹30 Cr</span></div>
-        <div class="srow"><span class="k">Cost</span><span class="pips"><i class="r"></i><i class="r"></i><i class="r"></i><i class="r"></i><i class="r"></i></span></div>
-        <div class="svd no">Highest-res from orbit, but prohibitive — ₹30 Cr per full network pass.</div></div>
-      <div class="scard cls"><div class="tagline">CLOSED API</div><div class="si"><svg class="ic"><use href="#i-map"/></svg></div><div class="scat">Street View · Closed</div><div class="sname">Google Street View</div>
-        <div class="srow"><span class="k">Resolution</span><span class="v">Ground</span></div><div class="srow"><span class="k">KL coverage</span><span class="v">~80% SH/NH</span></div>
-        <div class="srow"><span class="k">ML download</span><span class="v" style="color:var(--ar)">Blocked</span></div>
-        <div class="svd cls">Excellent imagery, but the terms forbid downloading it to train models.</div></div>
-      <div class="scard rec"><div class="tagline">PRIMARY · NOW</div><div class="si"><svg class="ic"><use href="#i-camera"/></svg></div><div class="scat">Open Street View</div><div class="sname">Meta Mapillary</div>
-        <div class="srow"><span class="k">Resolution</span><span class="v">Ground</span></div><div class="srow"><span class="k">KL coverage</span><span class="v">Growing</span></div>
-        <div class="srow"><span class="k">ML download</span><span class="v" style="color:var(--ac)">Full API</span></div>
-        <div class="svd ok">Open-licensed, downloadable, contributor API. The right place to begin.</div></div>
-      <div class="scard"><div class="si"><svg class="ic"><use href="#i-drone"/></svg></div><div class="scat">Drone / UAV</div><div class="sname">Tactical Survey</div>
-        <div class="srow"><span class="k">Resolution</span><span class="v">2–5 cm</span></div><div class="srow"><span class="k">Speed</span><span class="v">~20 km/day</span></div>
-        <div class="srow"><span class="k">Cost</span><span class="pips"><i class="r"></i><i class="r"></i><i class="r"></i><i></i><i></i></span></div>
-        <div class="svd warn">Best quality, but slow &amp; permit-heavy. Reserved for critical-site verification.</div></div>
+      <div class="scard"><div class="si"><svg class="ic"><use href="#i-satellite"/></svg></div><div class="scat">ഓപ്പൺ ഉപഗ്രഹം</div><div class="sname">Sentinel-2 / Landsat</div>
+        <div class="srow"><span class="k">റെസൊലൂഷൻ</span><span class="v">10 m/px</span></div><div class="srow"><span class="k">ആവൃത്തി</span><span class="v">5 ദിവസം</span></div>
+        <div class="srow"><span class="k">ചെലവ്</span><span class="pips"><i class="g"></i><i></i><i></i><i></i><i></i></span></div>
+        <div class="svd ok">സൗജന്യ ശൃംഖലാ സന്ദർഭം &amp; മാറ്റ-കണ്ടെത്തൽ — ഞങ്ങളുടെ ബേസ്‌മാപ്പ്, ഡിറ്റക്ടറല്ല.</div></div>
+      <div class="scard"><div class="si"><svg class="ic"><use href="#i-satellite"/></svg></div><div class="scat">വ്യാപാര ഉപഗ്രഹം</div><div class="sname">Planet / SPOT</div>
+        <div class="srow"><span class="k">റെസൊലൂഷൻ</span><span class="v">0.5–3 m</span></div><div class="srow"><span class="k">ആവൃത്തി</span><span class="v">ദൈനന്ദിനം</span></div>
+        <div class="srow"><span class="k">ചെലവ്</span><span class="pips"><i class="r"></i><i class="r"></i><i class="r"></i><i></i><i></i></span></div>
+        <div class="svd warn">₹1.5–5 Cr/yr — കുഴി കണ്ടെത്തലിന് ഇനിയും നൂൽ-പൊലുള്ളത്.</div></div>
+      <div class="scard no"><div class="si"><svg class="ic"><use href="#i-target"/></svg></div><div class="scat">നിർദ്ദിഷ്ട ഉപഗ്രഹം</div><div class="sname">Maxar / Pléiades</div>
+        <div class="srow"><span class="k">റെസൊലൂഷൻ</span><span class="v">0.3 m</span></div><div class="srow"><span class="k">സമ്പൂർണ്ണ സർവേ</span><span class="v" style="color:var(--ar)">~₹30 Cr</span></div>
+        <div class="srow"><span class="k">ചെലവ്</span><span class="pips"><i class="r"></i><i class="r"></i><i class="r"></i><i class="r"></i><i class="r"></i></span></div>
+        <div class="svd no">ഭ്രമണപഥത്തിൽ ഏറ്റവും ഉയർന്ന റെസൊലൂഷൻ, പക്ഷേ ₹30 Cr/ശൃംഖലാ-പ്രദക്ഷിണം — അസഹ്യ ചെലവ്.</div></div>
+      <div class="scard cls"><div class="tagline">അടഞ്ഞ API</div><div class="si"><svg class="ic"><use href="#i-map"/></svg></div><div class="scat">സ്ട്രീറ്റ് വ്യൂ · അടഞ്ഞ</div><div class="sname">Google Street View</div>
+        <div class="srow"><span class="k">റെസൊലൂഷൻ</span><span class="v">നിലം</span></div><div class="srow"><span class="k">KL കവറേജ്</span><span class="v">~80% SH/NH</span></div>
+        <div class="srow"><span class="k">ML ഡൗൺലോഡ്</span><span class="v" style="color:var(--ar)">തടഞ്ഞ</span></div>
+        <div class="svd cls">ഉത്തമ ചിത്രങ്ങൾ, പക്ഷേ ഉടമ്പടി മോഡൽ പരിശീലനത്തിന് ഡൗൺലോഡ് വിലക്കുന്നു.</div></div>
+      <div class="scard rec"><div class="tagline">പ്രാഥമികം · ഇപ്പോൾ</div><div class="si"><svg class="ic"><use href="#i-camera"/></svg></div><div class="scat">ഓപ്പൺ സ്ട്രീറ്റ് വ്യൂ</div><div class="sname">Meta Mapillary</div>
+        <div class="srow"><span class="k">റെസൊലൂഷൻ</span><span class="v">നിലം</span></div><div class="srow"><span class="k">KL കവറേജ്</span><span class="v">വളരുന്നത്</span></div>
+        <div class="srow"><span class="k">ML ഡൗൺലോഡ്</span><span class="v" style="color:var(--ac)">പൂർണ്ണ API</span></div>
+        <div class="svd ok">ഓപ്പൺ-ലൈസൻസ്ഡ്, ഡൗൺലോഡ് ചെയ്യാൻ, contributor API. ഇവിടെ തുടങ്ങാം.</div></div>
+      <div class="scard"><div class="si"><svg class="ic"><use href="#i-drone"/></svg></div><div class="scat">ഡ്രോൺ / UAV</div><div class="sname">തന്ത്രിക സർവേ</div>
+        <div class="srow"><span class="k">റെസൊലൂഷൻ</span><span class="v">2–5 cm</span></div><div class="srow"><span class="k">വേഗത</span><span class="v">~20 km/ദിനം</span></div>
+        <div class="srow"><span class="k">ചെലവ്</span><span class="pips"><i class="r"></i><i class="r"></i><i class="r"></i><i></i><i></i></span></div>
+        <div class="svd warn">ഏറ്റവും ഉയർന്ന ഗുണം, പക്ഷേ മന്ദഗതി &amp; അനുമതി-ഭാരം. നിർണ്ണായക-സ്ഥാന പരിശോധനക്ക് മാത്രം.</div></div>
     </div>
 
 
@@ -782,9 +905,9 @@ section{scroll-margin-top:64px}
   <div class="wrap">
     <div class="ai-grid">
       <div class="reveal" id="s-ai">
-        <div class="viewer" id="viewer">
+        <div class="viewer" id="viewerAi">
           <div class="vbar"><span class="live"></span>സോഫ്റ്റ്‌വെയർ കേടുപാട് കണ്ടെത്തുന്നത് കാണൂ</div>
-          <div class="vimg" id="vimg">
+          <div class="vimg" id="vimgAi">
             <img src="assets/pothole-detect.jpg" alt="A road with potholes">
             <div class="scanbar"></div>
             <div class="bbox" data-d="0" style="left:38%;top:55%;width:28%;height:30%"><span class="tag">POTHOLE</span></div>
@@ -902,7 +1025,7 @@ section{scroll-margin-top:64px}
 <script>
 const nav=document.getElementById('nav');
 addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40));
-const ro=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+const ro=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:0,rootMargin:'0px 0px -10% 0px'});
 document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
 
 const SAT='https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
@@ -912,30 +1035,30 @@ const CC={good:'#34D17E',fair:'#FFB020',poor:'#FF5A52'},CL={good:'നല്ല�
 
 /* Real-ish curved Kerala corridors (hand-authored along true geography) */
 const ROADS=[
-  {name:'NH-66 Kasaragod–Kannur',c:'good',iri:2.6,len:'78 km',date:'1 day ago',pts:[[12.499,74.989],[12.42,75.03],[12.34,75.07],[12.26,75.16],[12.18,75.22],[12.08,75.27],[11.97,75.31],[11.866,75.355]]},
-  {name:'NH-66 Kannur–Kozhikode',c:'fair',iri:4.3,len:'92 km',date:'3 days ago',pts:[[11.866,75.355],[11.75,75.45],[11.63,75.57],[11.5,75.64],[11.38,75.71],[11.258,75.78]]},
-  {name:'NH-66 Kozhikode–Ponnani',c:'good',iri:3.0,len:'70 km',date:'2 days ago',pts:[[11.258,75.78],[11.12,75.85],[10.98,75.92],[10.85,75.99],[10.72,76.04],[10.6,76.08]]},
-  {name:'NH-66 Ponnani–Kochi',c:'fair',iri:4.8,len:'96 km',date:'4 days ago',pts:[[10.6,76.08],[10.46,76.14],[10.33,76.21],[10.22,76.2],[10.1,76.24],[9.99,76.28]]},
-  {name:'NH-66 Kochi–Alappuzha',c:'good',iri:2.9,len:'58 km',date:'1 day ago',pts:[[9.99,76.28],[9.86,76.32],[9.72,76.34],[9.59,76.33],[9.49,76.336]]},
-  {name:'NH-66 Alappuzha–Kollam',c:'poor',iri:7.4,len:'66 km',date:'8 hrs ago',pts:[[9.49,76.336],[9.34,76.4],[9.2,76.48],[9.05,76.55],[8.89,76.605]]},
-  {name:'NH-66 Kollam–Thiruvananthapuram',c:'good',iri:3.2,len:'66 km',date:'3 days ago',pts:[[8.89,76.605],[8.78,76.7],[8.66,76.78],[8.56,76.88],[8.488,76.948]]},
-  {name:'SH-29 Kozhikode–Manjeri',c:'fair',iri:4.6,len:'42 km',date:'2 days ago',pts:[[11.258,75.78],[11.2,75.86],[11.14,75.95],[11.07,76.07]]},
-  {name:'SH-29 Manjeri–Tirur',c:'poor',iri:8.1,len:'14 km',date:'6 hrs ago',pts:[[11.07,76.07],[11.02,76.0],[10.96,75.95],[10.9,75.92]]},
-  {name:'SH-29 Tirur–Palakkad',c:'fair',iri:4.9,len:'82 km',date:'2 days ago',pts:[[10.9,75.92],[10.85,76.05],[10.82,76.2],[10.81,76.38],[10.79,76.53],[10.78,76.654]]},
-  {name:'NH-544 Thrissur–Palakkad',c:'good',iri:3.3,len:'58 km',date:'1 day ago',pts:[[10.527,76.214],[10.56,76.32],[10.62,76.42],[10.7,76.53],[10.78,76.654]]},
-  {name:'MC Road TVM–Kottayam',c:'good',iri:3.0,len:'120 km',date:'2 days ago',pts:[[8.488,76.948],[8.62,76.88],[8.78,76.84],[8.91,76.82],[9.05,76.8],[9.2,76.74],[9.36,76.66],[9.5,76.58],[9.591,76.522]]},
-  {name:'MC Road Kottayam–Angamaly',c:'fair',iri:4.4,len:'78 km',date:'5 days ago',pts:[[9.591,76.522],[9.72,76.5],[9.85,76.47],[9.98,76.42],[10.1,76.4],[10.19,76.387]]},
-  {name:'NH-766 Kozhikode–Wayanad',c:'fair',iri:5.4,len:'74 km',date:'4 days ago',pts:[[11.258,75.78],[11.32,75.86],[11.37,75.95],[11.42,76.0],[11.47,75.99],[11.52,76.03],[11.6,76.08],[11.685,76.13]]},
-  {name:'SH-33 Kochi–Munnar',c:'poor',iri:6.9,len:'110 km',date:'1 day ago',pts:[[9.99,76.28],[10.0,76.42],[10.02,76.56],[10.06,76.66],[10.09,76.76],[10.06,76.86],[10.02,76.95],[10.089,77.06]]},
-  {name:'NH-85 Kochi–Kumily',c:'fair',iri:4.7,len:'132 km',date:'3 days ago',pts:[[9.95,76.34],[9.86,76.46],[9.78,76.6],[9.72,76.74],[9.66,76.88],[9.6,77.0],[9.6,77.1]]},
-  {name:'SH-1 Punalur–Pathanamthitta',c:'good',iri:3.4,len:'46 km',date:'3 days ago',pts:[[9.01,76.93],[9.1,76.86],[9.2,76.82],[9.29,76.78],[9.36,76.7]]},
-  {name:'SH-8 Kottayam–Kumily',c:'fair',iri:5.0,len:'88 km',date:'4 days ago',pts:[[9.591,76.522],[9.64,76.66],[9.66,76.8],[9.62,76.94],[9.6,77.08]]},
+  {name:'NH-66 Kasaragod–Kannur',c:'good',iri:2.6,len:'78 km',date:'1 ദിനം മുമ്പ്',pts:[[12.499,74.989],[12.42,75.03],[12.34,75.07],[12.26,75.16],[12.18,75.22],[12.08,75.27],[11.97,75.31],[11.866,75.355]]},
+  {name:'NH-66 Kannur–Kozhikode',c:'fair',iri:4.3,len:'92 km',date:'3 ദിനം മുമ്പ്',pts:[[11.866,75.355],[11.75,75.45],[11.63,75.57],[11.5,75.64],[11.38,75.71],[11.258,75.78]]},
+  {name:'NH-66 Kozhikode–Ponnani',c:'good',iri:3.0,len:'70 km',date:'2 ദിനം മുമ്പ്',pts:[[11.258,75.78],[11.12,75.85],[10.98,75.92],[10.85,75.99],[10.72,76.04],[10.6,76.08]]},
+  {name:'NH-66 Ponnani–Kochi',c:'fair',iri:4.8,len:'96 km',date:'4 ദിനം മുമ്പ്',pts:[[10.6,76.08],[10.46,76.14],[10.33,76.21],[10.22,76.2],[10.1,76.24],[9.99,76.28]]},
+  {name:'NH-66 Kochi–Alappuzha',c:'good',iri:2.9,len:'58 km',date:'1 ദിനം മുമ്പ്',pts:[[9.99,76.28],[9.86,76.32],[9.72,76.34],[9.59,76.33],[9.49,76.336]]},
+  {name:'NH-66 Alappuzha–Kollam',c:'poor',iri:7.4,len:'66 km',date:'8 മണിക്കൂർ മുമ്പ്',pts:[[9.49,76.336],[9.34,76.4],[9.2,76.48],[9.05,76.55],[8.89,76.605]]},
+  {name:'NH-66 Kollam–Thiruvananthapuram',c:'good',iri:3.2,len:'66 km',date:'3 ദിനം മുമ്പ്',pts:[[8.89,76.605],[8.78,76.7],[8.66,76.78],[8.56,76.88],[8.488,76.948]]},
+  {name:'SH-29 Kozhikode–Manjeri',c:'fair',iri:4.6,len:'42 km',date:'2 ദിനം മുമ്പ്',pts:[[11.258,75.78],[11.2,75.86],[11.14,75.95],[11.07,76.07]]},
+  {name:'SH-29 Manjeri–Tirur',c:'poor',iri:8.1,len:'14 km',date:'6 മണിക്കൂർ മുമ്പ്',pts:[[11.07,76.07],[11.02,76.0],[10.96,75.95],[10.9,75.92]]},
+  {name:'SH-29 Tirur–Palakkad',c:'fair',iri:4.9,len:'82 km',date:'2 ദിനം മുമ്പ്',pts:[[10.9,75.92],[10.85,76.05],[10.82,76.2],[10.81,76.38],[10.79,76.53],[10.78,76.654]]},
+  {name:'NH-544 Thrissur–Palakkad',c:'good',iri:3.3,len:'58 km',date:'1 ദിനം മുമ്പ്',pts:[[10.527,76.214],[10.56,76.32],[10.62,76.42],[10.7,76.53],[10.78,76.654]]},
+  {name:'MC Road TVM–Kottayam',c:'good',iri:3.0,len:'120 km',date:'2 ദിനം മുമ്പ്',pts:[[8.488,76.948],[8.62,76.88],[8.78,76.84],[8.91,76.82],[9.05,76.8],[9.2,76.74],[9.36,76.66],[9.5,76.58],[9.591,76.522]]},
+  {name:'MC Road Kottayam–Angamaly',c:'fair',iri:4.4,len:'78 km',date:'5 ദിനം മുമ്പ്',pts:[[9.591,76.522],[9.72,76.5],[9.85,76.47],[9.98,76.42],[10.1,76.4],[10.19,76.387]]},
+  {name:'NH-766 Kozhikode–Wayanad',c:'fair',iri:5.4,len:'74 km',date:'4 ദിനം മുമ്പ്',pts:[[11.258,75.78],[11.32,75.86],[11.37,75.95],[11.42,76.0],[11.47,75.99],[11.52,76.03],[11.6,76.08],[11.685,76.13]]},
+  {name:'SH-33 Kochi–Munnar',c:'poor',iri:6.9,len:'110 km',date:'1 ദിനം മുമ്പ്',pts:[[9.99,76.28],[10.0,76.42],[10.02,76.56],[10.06,76.66],[10.09,76.76],[10.06,76.86],[10.02,76.95],[10.089,77.06]]},
+  {name:'NH-85 Kochi–Kumily',c:'fair',iri:4.7,len:'132 km',date:'3 ദിനം മുമ്പ്',pts:[[9.95,76.34],[9.86,76.46],[9.78,76.6],[9.72,76.74],[9.66,76.88],[9.6,77.0],[9.6,77.1]]},
+  {name:'SH-1 Punalur–Pathanamthitta',c:'good',iri:3.4,len:'46 km',date:'3 ദിനം മുമ്പ്',pts:[[9.01,76.93],[9.1,76.86],[9.2,76.82],[9.29,76.78],[9.36,76.7]]},
+  {name:'SH-8 Kottayam–Kumily',c:'fair',iri:5.0,len:'88 km',date:'4 ദിനം മുമ്പ്',pts:[[9.591,76.522],[9.64,76.66],[9.66,76.8],[9.62,76.94],[9.6,77.08]]},
 ];
 function pp(r){return `<div class="pp-n">${r.name}</div>
-  <div class="pp-r"><span class="pp-k">CONDITION</span><span class="pp-v" style="color:${CC[r.c]}">${CL[r.c]}</span></div>
-  <div class="pp-r"><span class="pp-k">ROUGHNESS</span><span class="pp-v">${r.iri} <span style="color:var(--t3)">(lower = smoother)</span></span></div>
-  <div class="pp-r"><span class="pp-k">LENGTH</span><span class="pp-v">${r.len}</span></div>
-  <div class="pp-r"><span class="pp-k">SURVEYED</span><span class="pp-v" style="color:var(--t3)">${r.date}</span></div>`;}
+  <div class="pp-r"><span class="pp-k">അവസ്ഥ</span><span class="pp-v" style="color:${CC[r.c]}">${CL[r.c]}</span></div>
+  <div class="pp-r"><span class="pp-k">ഒരുക്കം (IRI)</span><span class="pp-v">${r.iri} <span style="color:var(--t3)">(കുറവ് = മിനുസം)</span></span></div>
+  <div class="pp-r"><span class="pp-k">നീളം</span><span class="pp-v">${r.len}</span></div>
+  <div class="pp-r"><span class="pp-k">സർവേ</span><span class="pp-v" style="color:var(--t3)">${r.date}</span></div>`;}
 (()=>{const m=L.map('heroSat',{zoomControl:false,attributionControl:false,scrollWheelZoom:false,dragging:false,doubleClickZoom:false,keyboard:false,touchZoom:false});
   L.tileLayer(SAT,SATO).addTo(m);
   const tour=[[9.9816,76.2999,14],[11.2588,75.7804,14],[8.5241,76.9366,13],[10.5276,76.2144,14]];let i=0;m.setView([tour[0][0],tour[0][1]],tour[0][2]);
@@ -949,10 +1072,10 @@ function pp(r){return `<div class="pp-n">${r.name}</div>
   const sel=document.getElementById('selBody'),selS=document.getElementById('selStatus');
   function showSel(r){selS.textContent=CL[r.c];selS.style.color=CC[r.c];
     sel.innerHTML=`<div class="sel-name">${r.name}</div><div class="sel-grid">
-      <div class="sel-cell"><div class="k">Condition</div><div class="v" style="color:${CC[r.c]}">${CL[r.c]}</div></div>
-      <div class="sel-cell"><div class="k">Roughness</div><div class="v">${r.iri}</div></div>
-      <div class="sel-cell"><div class="k">Length</div><div class="v">${r.len}</div></div>
-      <div class="sel-cell"><div class="k">Surveyed</div><div class="v" style="font-size:.78rem">${r.date}</div></div></div>`;}
+      <div class="sel-cell"><div class="k">അവസ്ഥ</div><div class="v" style="color:${CC[r.c]}">${CL[r.c]}</div></div>
+      <div class="sel-cell"><div class="k">ഒരുക്കം</div><div class="v">${r.iri}</div></div>
+      <div class="sel-cell"><div class="k">നീളം</div><div class="v">${r.len}</div></div>
+      <div class="sel-cell"><div class="k">സർവേ</div><div class="v" style="font-size:.78rem">${r.date}</div></div></div>`;}
   ROADS.forEach(r=>{const w=r.c==='poor'?5:r.c==='fair'?4:3;
     L.polyline(r.pts,{color:'#000',weight:w+3,opacity:.4}).addTo(m);
     const ln=L.polyline(r.pts,{color:CC[r.c],weight:w,opacity:.92,lineJoin:'round',lineCap:'round'}).addTo(m);
@@ -970,7 +1093,7 @@ function pp(r){return `<div class="pp-n">${r.name}</div>
 (()=>{
   const lb=document.getElementById('lightbox');if(!lb)return;
   const img=document.getElementById('lbImg'),box=document.getElementById('lbBox'),bt=document.getElementById('lbBt');
-  const CLN={poor:'Poor',fair:'Fair',good:'Good'},CCL={poor:'var(--ar)',fair:'var(--au)',good:'var(--ac)'};
+  const CLN={poor:'മോശം',fair:'സാധാരണം',good:'നല്ലത്'},CCL={poor:'var(--ar)',fair:'var(--au)',good:'var(--ac)'};
   function open(a){
     const d=a.dataset;
     img.src=d.img;img.style.objectPosition=d.pos||'50% 50%';
@@ -981,7 +1104,7 @@ function pp(r){return `<div class="pp-n">${r.name}</div>
     document.getElementById('lbConf').textContent=d.conf||'—';
     const cond=document.getElementById('lbCond');cond.textContent=CLN[d.cond]||'—';cond.style.color=CCL[d.cond]||'var(--tx)';
     document.getElementById('lbLoc').textContent=d.loc||'—';
-    document.getElementById('lbFoot').textContent='Source: '+(d.src||'detection').toLowerCase()+' · frame stored as evidence';
+    document.getElementById('lbFoot').textContent='ഉറവിടം: '+(d.src||'detection').toLowerCase()+' · ദൃശ്യചിത്രം തെളിവായി സൂക്ഷിച്ചു';
     lb.classList.add('show');
   }
   document.querySelectorAll('.al[data-img]').forEach(a=>a.addEventListener('click',()=>open(a)));
@@ -991,15 +1114,136 @@ function pp(r){return `<div class="pp-n">${r.name}</div>
   addEventListener('keydown',e=>{if(e.key==='Escape')close();});
 })();
 
+/* ── Detection Engine scan (detect section) ── */
+(()=>{
+  const vDet=document.getElementById('viewerDetect');if(!vDet)return;
+  const boxesDet=[...document.querySelectorAll('#vimgDetect .bbox')];
+  const rowsDet=[...document.querySelectorAll('#detRows .drow')];
+  const verdict=document.getElementById('termVerdict');
+  const termCount=document.getElementById('termCount');
+  let timers=[],ranDet=false;
+  function clearDet(){timers.forEach(clearTimeout);timers=[];boxesDet.forEach(b=>b.classList.remove('show'));rowsDet.forEach(r=>r.classList.remove('show'));if(verdict)verdict.classList.remove('show'),verdict.style.opacity='0';vDet.classList.remove('done','scan');}
+  function scanDet(){
+    clearDet();void vDet.offsetWidth;vDet.classList.add('scan');
+    timers.push(setTimeout(()=>vDet.classList.add('done'),650));
+    [0,1,2,3].forEach((d,i)=>{
+      timers.push(setTimeout(()=>{
+        const b=boxesDet.find(x=>x.dataset.d==d),r=rowsDet.find(x=>x.dataset.d==d);
+        if(b)b.classList.add('show');if(r)r.classList.add('show');
+      },700+i*380));
+    });
+    timers.push(setTimeout(()=>{
+      if(termCount)termCount.textContent='4 കണ്ടെത്തി';
+      if(verdict){verdict.style.opacity='1';verdict.classList.add('show');}
+    },700+4*380));
+  }
+  new IntersectionObserver(en=>{
+    if(en[0].isIntersecting&&!ranDet){ranDet=true;scanDet();}
+    else if(!en[0].isIntersecting)ranDet=false;
+  },{threshold:.35}).observe(vDet);
 
-/* AI detect scan */
-(()=>{const v=document.getElementById('viewer');if(!v)return;
-  const boxes=[...document.querySelectorAll('#vimg .bbox')],rows=[...document.querySelectorAll('#aiFound .af')];let timers=[],ran=false;
-  function clear(){timers.forEach(clearTimeout);timers=[];boxes.forEach(b=>b.classList.remove('show'));rows.forEach(r=>r.classList.remove('show'));v.classList.remove('done');}
-  function scan(){clear();v.classList.remove('scan');void v.offsetWidth;v.classList.add('scan');
-    timers.push(setTimeout(()=>v.classList.add('done'),650));
-    [1,0,3].forEach((d,i)=>timers.push(setTimeout(()=>{boxes.find(b=>b.dataset.d==d).classList.add('show');rows.find(r=>r.dataset.d==d).classList.add('show');},700+i*420)));}
-  new IntersectionObserver(en=>{if(en[0].isIntersecting&&!ran){ran=true;scan();}else if(!en[0].isIntersecting){ran=false;}},{threshold:.5}).observe(v);})();
+  /* RAW / വിശകലനം / വീണ്ടും സ്കാൻ buttons */
+  const bRaw=document.getElementById('bRaw'),bDet2=document.getElementById('bDet'),bReplay=document.getElementById('bReplay');
+  let showingRaw=false;
+  if(bRaw)bRaw.onclick=()=>{
+    if(showingRaw)return;showingRaw=true;
+    bRaw.classList.add('on');if(bDet2)bDet2.classList.remove('on');
+    boxesDet.forEach(b=>b.style.visibility='hidden');
+  };
+  if(bDet2)bDet2.onclick=()=>{
+    if(!showingRaw)return;showingRaw=false;
+    bDet2.classList.add('on');if(bRaw)bRaw.classList.remove('on');
+    boxesDet.forEach(b=>b.style.visibility='');
+  };
+  if(bReplay)bReplay.onclick=()=>{
+    showingRaw=false;if(bDet2)bDet2.classList.add('on');if(bRaw)bRaw.classList.remove('on');
+    boxesDet.forEach(b=>b.style.visibility='');
+    ranDet=false;scanDet();
+  };
+})();
+
+/* ── AI section scan (ai section) ── */
+(()=>{
+  const vAi=document.getElementById('viewerAi');if(!vAi)return;
+  const boxesAi=[...document.querySelectorAll('#vimgAi .bbox')];
+  const rowsAi=[...document.querySelectorAll('#aiFound .af')];
+  let timers=[],ranAi=false;
+  function clearAi(){timers.forEach(clearTimeout);timers=[];boxesAi.forEach(b=>b.classList.remove('show'));rowsAi.forEach(r=>r.classList.remove('show'));vAi.classList.remove('done','scan');}
+  function scanAi(){
+    clearAi();void vAi.offsetWidth;vAi.classList.add('scan');
+    timers.push(setTimeout(()=>vAi.classList.add('done'),650));
+    [0,1,3].forEach((d,i)=>timers.push(setTimeout(()=>{
+      const b=boxesAi.find(x=>x.dataset.d==d),r=rowsAi.find(x=>x.dataset.d==d);
+      if(b)b.classList.add('show');if(r)r.classList.add('show');
+    },700+i*420)));
+  }
+  new IntersectionObserver(en=>{
+    if(en[0].isIntersecting&&!ranAi){ranAi=true;scanAi();}
+    else if(!en[0].isIntersecting)ranAi=false;
+  },{threshold:.5}).observe(vAi);
+})();
+
+/* ── Resolution canvas renderer ── */
+(()=>{
+  function drawCanvas(canvas){
+    const gsd=parseFloat(canvas.dataset.gsd);
+    const ctx=canvas.getContext('2d');
+    const W=canvas.width,H=canvas.height;
+    ctx.clearRect(0,0,W,H);
+    if(gsd>=5){
+      const blkW=Math.round(W/6),blkH=Math.round(H/5);
+      const palette=['#6a7a58','#7a8a62','#5e6e4c','#8a9a6e','#6e7e58','#748264','#626e50','#88985e','#707a56','#6c7e5a','#7a8260','#6a7260'];
+      for(let r=0;r<5;r++)for(let c=0;c<6;c++){ctx.fillStyle=palette[(r*6+c)%palette.length];ctx.fillRect(c*blkW,r*blkH,blkW+1,blkH+1);}
+      ctx.fillStyle='rgba(110,100,88,.25)';ctx.fillRect(W*.38,0,W*.22,H);
+      ctx.fillStyle='rgba(0,0,0,.32)';ctx.fillRect(0,H-26,W,26);
+      ctx.fillStyle='rgba(255,255,255,.55)';ctx.font='bold 9px monospace';ctx.textAlign='center';
+      ctx.fillText('കുഴി ≈ 0.05 px — അദൃശ്യം',W/2,H-10);
+    }else if(gsd>=2){
+      ctx.fillStyle='#6a7a58';ctx.fillRect(0,0,W,H);
+      ctx.fillStyle='#7e7a6e';ctx.fillRect(W*.3,0,W*.38,H);
+      const blk=10;
+      for(let x=0;x<W;x+=blk)for(let y=0;y<H;y+=blk){
+        const v=(Math.random()-.5)*22;
+        ctx.fillStyle=`rgba(${v>0?255:0},${v>0?255:0},${v>0?255:0},${Math.abs(v)/100})`;
+        ctx.fillRect(x,y,blk,blk);
+      }
+      ctx.fillStyle='rgba(0,0,0,.3)';ctx.fillRect(0,H-26,W,26);
+      ctx.fillStyle='rgba(255,255,255,.55)';ctx.font='bold 9px monospace';ctx.textAlign='center';
+      ctx.fillText('കുഴി ≈ 0.2 px — അദൃശ്യം',W/2,H-10);
+    }else if(gsd>=0.2){
+      ctx.fillStyle='#5a5852';ctx.fillRect(0,0,W,H);
+      ctx.fillStyle='#504c46';ctx.fillRect(W*.2,0,W*.6,H);
+      for(let i=0;i<180;i++){const v=Math.random()>.5?'rgba(255,255,255,.06)':'rgba(0,0,0,.06)';const s=Math.random()*4+2;ctx.fillStyle=v;ctx.fillRect(Math.random()*W,Math.random()*H,s,s);}
+      const grad=ctx.createRadialGradient(W*.5,H*.56,0,W*.5,H*.56,W*.14);
+      grad.addColorStop(0,'rgba(22,18,12,.6)');grad.addColorStop(1,'rgba(22,18,12,0)');
+      ctx.fillStyle=grad;ctx.fillRect(0,0,W,H);
+      ctx.strokeStyle='rgba(255,176,32,.75)';ctx.lineWidth=1.5;ctx.setLineDash([4,3]);
+      ctx.strokeRect(W*.34,H*.42,W*.32,H*.28);ctx.setLineDash([]);
+      ctx.fillStyle='rgba(0,0,0,.3)';ctx.fillRect(0,H-26,W,26);
+      ctx.fillStyle='rgba(255,176,32,.8)';ctx.font='bold 9px monospace';ctx.textAlign='center';
+      ctx.fillText('ഒരു മങ്ങല്‍ — ₹30 Cr-ന്‍',W/2,H-10);
+    }else{
+      ctx.fillStyle='#504e48';ctx.fillRect(0,0,W,H);
+      ctx.fillStyle='#47433e';ctx.fillRect(W*.12,0,W*.76,H);
+      for(let i=0;i<350;i++){const s=Math.random()*2.5+.5;ctx.fillStyle=Math.random()>.5?'rgba(255,255,255,.07)':'rgba(0,0,0,.1)';ctx.fillRect(Math.random()*W,Math.random()*H,s,s);}
+      ctx.fillStyle='#232018';
+      ctx.beginPath();ctx.ellipse(W*.49,H*.57,W*.13,H*.1,-0.2,0,Math.PI*2);ctx.fill();
+      ctx.fillStyle='#141210';
+      ctx.beginPath();ctx.ellipse(W*.48,H*.58,W*.08,H*.065,-0.2,0,Math.PI*2);ctx.fill();
+      ctx.strokeStyle='#38342e';ctx.lineWidth=1.2;
+      [[W*.49,H*.48,W*.43,H*.35],[W*.54,H*.5,W*.64,H*.4],[W*.5,H*.65,W*.56,H*.76]].forEach(([x1,y1,x2,y2])=>{ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();});
+      ctx.strokeStyle='#FF5A52';ctx.lineWidth=2;ctx.setLineDash([]);
+      ctx.strokeRect(W*.32,H*.44,W*.34,H*.28);
+      const m=7,tx=W*.32,ty=H*.44,bx=W*.66,by=H*.72;
+      ctx.strokeStyle='#FF5A52';ctx.lineWidth=2;
+      [[tx,ty,1,1],[bx,ty,-1,1],[tx,by,1,-1],[bx,by,-1,-1]].forEach(([x,y,sx,sy])=>{ctx.beginPath();ctx.moveTo(x+sx*m,y);ctx.lineTo(x,y);ctx.lineTo(x,y+sy*m);ctx.stroke();});
+      ctx.fillStyle='rgba(0,0,0,.3)';ctx.fillRect(0,H-26,W,26);
+      ctx.fillStyle='rgba(52,209,126,.9)';ctx.font='bold 9px monospace';ctx.textAlign='center';
+      ctx.fillText('വ്യക്തമായി കണ്ടെത്താം',W/2,H-10);
+    }
+  }
+  document.querySelectorAll('canvas[data-gsd]').forEach(drawCanvas);
+})();
 
 /* ── dashboard hotzones (click ? to learn what a panel is) ── */
 (()=>{
@@ -1015,10 +1259,25 @@ function pp(r){return `<div class="pp-n">${r.name}</div>
   document.addEventListener('click',e=>{if(!e.target.closest('.hzpop')&&!e.target.closest('.hz'))pop.classList.remove('show');});
 })();
 
-/* "start the story" buttons → scroll into the story */
+/* "എങ്ങനെ പ്രവർത്തിക്കുന്നു" tour — auto-scrolls through key sections */
 (()=>{
+  const stops=['#how','#twin','#detect','#ai'];
+  let tourT=[];
+  function startTour(){
+    tourT.forEach(clearTimeout);tourT=[];
+    let delay=0;
+    stops.forEach((sel)=>{
+      tourT.push(setTimeout(()=>{
+        const el=document.querySelector(sel);
+        if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+      },delay));
+      delay+=3800;
+    });
+  }
   const go=()=>document.getElementById('how').scrollIntoView({behavior:'smooth',block:'start'});
-  ['navTour','heroTour','closeTour'].forEach(id=>{const el=document.getElementById(id);if(el)el.onclick=go;});
+  document.getElementById('navTour')&&(document.getElementById('navTour').onclick=go);
+  document.getElementById('heroTour')&&(document.getElementById('heroTour').onclick=startTour);
+  document.getElementById('closeTour')&&(document.getElementById('closeTour').onclick=startTour);
 })();
 </script>
 </body>
