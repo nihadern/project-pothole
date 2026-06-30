@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>പ്രോജക്ട് പോത്ത്‌ഹോൾ — കേരളത്തിലെ എല്ലാ റോഡും ഒരു ഭൂപടത്തിൽ</title>
+<title>പ്രോജക്ട് പോത്ത്‌ഹോൾ: കേരളത്തിലെ എല്ലാ റോഡും ഒരു ഭൂപടത്തിൽ</title>
 <meta name="description" content="Project Pothole finds and ranks every pothole across Kerala's 29,500 km of public roads, so the worst roads get fixed first. A simple overview.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0c0d'/%3E%3Crect x='10' y='10' width='12' height='12' rx='2' transform='rotate(45 16 16)' fill='%2334D17E'/%3E%3C/svg%3E">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://nihadern.github.io/project-pothole/simple-ml.html">
-<meta property="og:title" content="Project Pothole — Every road in Kerala, on one map">
+<meta property="og:title" content="Project Pothole: Every road in Kerala, on one map">
 <meta property="og:description" content="We find and rank every pothole in Kerala so the worst roads get fixed first. Take the 60-second tour.">
 <meta property="og:image" content="https://nihadern.github.io/project-pothole/assets/og-preview.png">
 <meta property="og:image:width" content="1440"><meta property="og:image:height" content="900">
@@ -433,12 +433,10 @@ section{scroll-margin-top:64px}
 .fwire{fill:none;stroke:var(--line2);stroke-width:1.5;stroke-dasharray:5 4}
 .fwire.pri{fill:none;stroke:var(--ac-d);stroke-width:2;stroke-dasharray:none}
 .fcore{border:1px solid var(--ac-d);border-radius:12px;overflow:hidden;background:var(--panel)}
-.fcore-map{height:160px;background:linear-gradient(160deg,#daf0e6,#eaf8f0,#d5ece0);position:relative;overflow:hidden;display:flex;align-items:flex-start;justify-content:flex-start;padding:8px}
-.fcore-tag{z-index:2;position:relative;background:rgba(255,255,255,.75);border-radius:4px;padding:3px 8px}
-.fcore-tag .sq{animation:hzpulse 1.5s ease-in-out infinite}
-.fmap-svg{position:absolute;inset:0;width:100%;height:100%;opacity:1}
-.fcore-tag{font-family:var(--fm);font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ac);display:flex;align-items:center;gap:6px}
-.fcore-tag .sq{width:6px;height:6px;background:var(--ac);border-radius:50%;animation:hzpulse 1.5s ease-in-out infinite}
+.fcore-map{height:188px;position:relative;overflow:hidden}
+.fcore-map::after{content:'';position:absolute;inset:0;box-shadow:inset 0 0 30px rgba(10,12,13,.7);pointer-events:none;z-index:401}
+.fcore-tag{position:absolute;top:9px;left:9px;z-index:402;font-family:var(--fm);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ac);background:rgba(10,12,13,.7);border:1px solid var(--ac-d);padding:3px 7px;border-radius:2px;display:flex;align-items:center;gap:6px}
+.fcore-tag .sq{width:5px;height:5px;background:var(--ac)}
 .fcore-cap{padding:12px 14px;border-top:1px solid rgba(12,154,82,.2)}
 .fc-t{font-weight:700;color:var(--tx);font-size:.9rem}
 .fc-s{font-size:.74rem;color:var(--t2);margin-top:3px;line-height:1.4}
@@ -503,8 +501,8 @@ section{scroll-margin-top:64px}
 .reso-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 .rframe{display:flex;flex-direction:column;gap:7px}
 .rframe.best .rcanvas{border-color:var(--ac-d);box-shadow:0 0 0 1.5px var(--ac-d)}
-.rcanvas{position:relative;border:1px solid var(--line2);border-radius:9px;overflow:hidden;background:#e8ede9}
-.rcanvas canvas{width:100%;height:auto;display:block}
+.rcanvas{position:relative;aspect-ratio:4/3;overflow:hidden;background:#000}
+.rcanvas canvas{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated}
 .gsd{position:absolute;top:6px;left:7px;font-family:var(--fm);font-size:.6rem;font-weight:700;background:rgba(0,0,0,.58);color:#fff;padding:2px 7px;border-radius:3px;z-index:2;letter-spacing:.04em}
 .rname{font-size:.82rem;color:var(--tx);font-weight:600}
 .rname span{color:var(--t3);font-weight:400}
@@ -515,29 +513,16 @@ section{scroll-margin-top:64px}
 @media(max-width:860px){.reso-row{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:480px){.reso-row{grid-template-columns:repeat(2,1fr)}}
 
-/* ── Source cards (imagery strategy) ── */
-.scards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
-.scard{position:relative;border:1px solid var(--line);border-radius:12px;background:var(--panel);padding:18px 16px;box-shadow:0 4px 14px rgba(20,40,30,.05);transition:box-shadow .2s}
-.scard:hover{box-shadow:0 6px 24px rgba(20,40,30,.1)}
-.scard.rec{border-color:var(--ac-d);background:rgba(12,154,82,.04)}
-.scard.no{opacity:.82}.scard.cls{opacity:.82}
-.tagline{position:absolute;top:-1px;right:14px;font-family:var(--fm);font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;background:var(--ac);color:#04140b;border-radius:0 0 6px 6px}
-.scard.cls .tagline{background:var(--line2);color:var(--t3)}
-.si{width:36px;height:36px;border-radius:8px;background:rgba(12,154,82,.1);display:flex;align-items:center;justify-content:center;color:var(--ac);margin-bottom:10px}
+/* ── Source list (imagery strategy — minimal) ── */
+.si{width:36px;height:36px;border-radius:8px;background:rgba(12,154,82,.1);display:flex;align-items:center;justify-content:center;color:var(--ac);flex-shrink:0}
 .si .ic{width:18px;height:18px;flex-shrink:0}
-.scat{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);margin-bottom:2px}
-.sname{font-size:.92rem;font-weight:600;color:var(--tx);margin-bottom:10px}
-.srow{display:flex;align-items:center;gap:5px;font-size:.78rem;margin-bottom:4px}
-.srow .k{color:var(--t3);flex-shrink:0}
-.srow .k::after{content:':'}
-.srow .v{color:var(--tx);font-weight:500}
-.pips{display:flex;gap:3px;align-items:center}
-.pips i{display:inline-block;width:10px;height:10px;border-radius:2px;background:var(--line2)}
-.pips i.g{background:var(--ac)}.pips i.r{background:var(--ar)}
-.svd{margin-top:10px;font-size:.76rem;color:var(--t2);line-height:1.5;padding-top:10px;border-top:1px solid var(--line)}
-.svd.ok{color:var(--ac)}.svd.warn{color:var(--au)}.svd.no{color:var(--ar)}.svd.cls{color:var(--t3)}
-@media(max-width:860px){.scards{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:500px){.scards{grid-template-columns:1fr}}
+.srcs-min{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px}
+.src-item{display:flex;align-items:flex-start;gap:10px;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.src-item.primary{border-color:var(--ac-d);background:rgba(12,154,82,.04)}
+.src-name{font-size:.88rem;font-weight:600;color:var(--tx);margin-bottom:3px}
+.src-note{font-size:.77rem;color:var(--t2);line-height:1.4}
+@media(max-width:860px){.srcs-min{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:500px){.srcs-min{grid-template-columns:1fr}}
 
 /* ── Missing CSS rules ── */
 .termVerdict{transition:opacity .5s}
@@ -623,7 +608,7 @@ section{scroll-margin-top:64px}
   <div class="hero-in">
     <div class="kicker"><span class="mk"></span>കേരള പൊതുമരാമത്ത് വകുപ്പിനായി</div>
     <h1>കേരളത്തിലെ എല്ലാ റോഡും,<br><em>ഒരൊറ്റ ഭൂപടത്തിൽ.</em></h1>
-    <p class="hero-sub">കേരളത്തിലെ 29,500 കി.മീ. പൊതുറോഡുകളിലെ ഓരോ കുഴിയും പ്രോജക്ട് പോത്ത്‌ഹോൾ കണ്ടെത്തി മുൻഗണന നൽകുന്നു — ഏറ്റവും മോശം റോഡുകൾ ആദ്യം നന്നാക്കാൻ, തെളിവോടെ.</p>
+    <p class="hero-sub">കേരളത്തിലെ 29,500 കി.മീ. പൊതുറോഡുകളിലെ ഓരോ കുഴിയും പ്രോജക്ട് പോത്ത്‌ഹോൾ കണ്ടെത്തി മുൻഗണന നൽകുന്നു. ഏറ്റവും മോശം റോഡുകൾ ആദ്യം നന്നാക്കാൻ, തെളിവോടെ.</p>
     <div class="hero-cta">
       <button class="btn-a" id="heroTour">▶ ഒരു മിനിറ്റിൽ കാണൂ</button>
       <a href="#twin" class="btn-b">തത്സമയ ഭൂപടം കാണൂ</a>
@@ -639,7 +624,7 @@ section{scroll-margin-top:64px}
 <!-- PROBLEM -->
 <section id="problem">
   <div class="wrap">
-    <p class="problem-q reveal">ഏതൊക്കെ റോഡുകളാണ് മോശമെന്ന് ഇന്ന് ആർക്കും പൂർണ്ണചിത്രമില്ല. ആളുകൾ <b>പരാതിപ്പെടുമ്പോഴാണ്</b> അറ്റകുറ്റപ്പണി നടക്കുന്നത് — ഏറ്റവും ആവശ്യമുള്ളിടത്തല്ല. പ്രോജക്ട് പോത്ത്‌ഹോൾ അത് മാറ്റുന്നു.</p>
+    <p class="problem-q reveal">ഏതൊക്കെ റോഡുകളാണ് മോശമെന്ന് ഇന്ന് ആർക്കും പൂർണ്ണചിത്രമില്ല. ആളുകൾ <b>പരാതിപ്പെടുമ്പോഴാണ്</b> അറ്റകുറ്റപ്പണി നടക്കുന്നത്, ഏറ്റവും ആവശ്യമുള്ളിടത്തല്ല. പ്രോജക്ട് പോത്ത്‌ഹോൾ അത് മാറ്റുന്നു.</p>
   </div>
 </section>
 
@@ -649,12 +634,12 @@ section{scroll-margin-top:64px}
     <div class="shead reveal">
       <span class="story-step">ഘട്ടം 01</span>
       <h2 class="stitle">എങ്ങനെ പ്രവർത്തിക്കുന്നു, <em>മൂന്ന് ഘട്ടങ്ങളിൽ</em></h2>
-      <p class="ssub">പുതിയ യന്ത്രങ്ങളില്ല. ചെലവേറിയ സർവേകളില്ല. നിലവിലുള്ള ചിത്രങ്ങൾ, മിടുക്കൻ സോഫ്റ്റ്‌വെയർ, ഒരു ലളിത ഭൂപടം — അത്രമാത്രം.</p>
+      <p class="ssub">പുതിയ യന്ത്രങ്ങളില്ല. ചെലവേറിയ സർവേകളില്ല. നിലവിലുള്ള ചിത്രങ്ങൾ, മിടുക്കൻ സോഫ്റ്റ്‌വെയർ, ഒരു ലളിത ഭൂപടം. അത്രമാത്രം.</p>
     </div>
     <div class="steps">
       <div class="step reveal"><div class="num">1</div><svg class="ic" viewBox="0 0 24 24"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg><h3>ഇതിനകം ഉള്ള ചിത്രങ്ങളിൽ നിന്ന് തുടങ്ങുക</h3><p>കേരളത്തിലെ റോഡുകൾ ഇതിനകം സ്ട്രീറ്റ്-ലെവൽ ചിത്രങ്ങളിൽ പകർത്തപ്പെട്ടിട്ടുണ്ട്. പുതിയ സർവേകളോ യന്ത്രങ്ങളോ ഇല്ലാതെ, ആ ചിത്രങ്ങൾ ആദ്യം വിശകലനം ചെയ്ത് റോഡ് ശൃംഖലയുടെ അവസ്ഥ മനസ്സിലാക്കുന്നു.</p></div>
-      <div class="step reveal"><div class="num">2</div><svg class="ic" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg><h3>ഇടവേളകൾ നികത്തുക — ഒരു ഫോണും ആപ്പും</h3><p>ചിത്രങ്ങൾ പഴയതോ ഇല്ലാത്തതോ ആയ ഇടങ്ങളിൽ, ഡാഷ്‌ബോർഡിൽ ഘടിപ്പിച്ച ഫോൺ വാഹനം സാധാരണ ഓടുമ്പോൾ റോഡ് ഫോട്ടോ എടുക്കുന്നു. ഒരു ആപ്പ് വഴി ഡ്രൈവർമാർക്ക് പശ്ചാത്തലത്തിൽ ഡേറ്റ നൽകാം.</p></div>
-      <div class="step reveal"><div class="num">3</div><svg class="ic" viewBox="0 0 24 24"><path d="M9 20 3 17V4l6 3 6-3 6 3v13l-6-3-6 3z"/><path d="M9 7v13M15 4v13"/></svg><h3>ഓരോ റോഡിനും ഒരു സ്കോർ</h3><p>AI ഓരോ കുഴിയും വിള്ളലും പൊട്ടിയ വക്കും അടയാളപ്പെടുത്തി ഒരു തത്സമയ ഭൂപടമാക്കുന്നു — മോശം ആദ്യം.</p></div>
+      <div class="step reveal"><div class="num">2</div><svg class="ic" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg><h3>ഇടവേളകൾ നികത്തുക: ഒരു ഫോണും ആപ്പും</h3><p>ചിത്രങ്ങൾ പഴയതോ ഇല്ലാത്തതോ ആയ ഇടങ്ങളിൽ, ഡാഷ്‌ബോർഡിൽ ഘടിപ്പിച്ച ഫോൺ വാഹനം സാധാരണ ഓടുമ്പോൾ റോഡ് ഫോട്ടോ എടുക്കുന്നു. ഒരു ആപ്പ് വഴി ഡ്രൈവർമാർക്ക് പശ്ചാത്തലത്തിൽ ഡേറ്റ നൽകാം.</p></div>
+      <div class="step reveal"><div class="num">3</div><svg class="ic" viewBox="0 0 24 24"><path d="M9 20 3 17V4l6 3 6-3 6 3v13l-6-3-6 3z"/><path d="M9 7v13M15 4v13"/></svg><h3>ഓരോ റോഡിനും ഒരു സ്കോർ</h3><p>AI ഓരോ കുഴിയും വിള്ളലും പൊട്ടിയ വക്കും അടയാളപ്പെടുത്തി ഒരു തത്സമയ ഭൂപടമാക്കുന്നു, മോശം ആദ്യം.</p></div>
     </div>
   </div>
 </section>
@@ -664,7 +649,7 @@ section{scroll-margin-top:64px}
   <div class="twin-intro reveal">
     <span class="kicker" style="justify-content:center">തത്സമയ ഡാഷ്‌ബോർഡ്</span>
     <h2 class="stitle">കേരളത്തിലെ എല്ലാ റോഡും, <em>ഒരൊറ്റ സ്ക്രീനിൽ</em></h2>
-    <p class="ssub" style="margin-left:auto;margin-right:auto">പച്ച നല്ലത്, മഞ്ഞ ശ്രദ്ധ വേണം, ചുവപ്പ് മോശം. ഏതു റോഡിലും ടാപ് ചെയ്ത് പരിശോധിക്കൂ — അല്ലെങ്കിൽ ഓരോ പാനലും എന്താണെന്നറിയാൻ <b style="color:var(--ac)">?</b> അടയാളത്തിൽ ടാപ് ചെയ്യൂ.</p>
+    <p class="ssub" style="margin-left:auto;margin-right:auto">പച്ച നല്ലത്, മഞ്ഞ ശ്രദ്ധ വേണം, ചുവപ്പ് മോശം. ഏതു റോഡിലും ടാപ് ചെയ്ത് പരിശോധിക്കൂ. ഓരോ പാനലും എന്താണെന്നറിയാൻ <b style="color:var(--ac)">?</b> അടയാളത്തിൽ ടാപ് ചെയ്യൂ.</p>
   </div>
   <div class="twin-shell">
     <div class="tzoom"><button id="tzIn" aria-label="Zoom in">+</button><button id="tzOut" aria-label="Zoom out">−</button></div>
@@ -684,7 +669,7 @@ section{scroll-margin-top:64px}
       </div>
     </div>
     <div class="tov tov-alerts brk">
-      <div class="tov-h"><span>തത്സമയ അലേർട്ടുകൾ</span><button class="hz" data-t="Live Alerts" data-d="സിസ്റ്റം കണ്ടെത്തിയ ഏറ്റവും പുതിയ പ്രശ്നങ്ങൾ. ഓരോന്നിനും ഫോട്ടോയുണ്ട് — യഥാർത്ഥ കുഴി കാണാൻ അലേർട്ടിൽ ടാപ് ചെയ്യൂ.">?</button></div>
+      <div class="tov-h"><span>തത്സമയ അലേർട്ടുകൾ</span><button class="hz" data-t="Live Alerts" data-d="സിസ്റ്റം കണ്ടെത്തിയ ഏറ്റവും പുതിയ പ്രശ്നങ്ങൾ. ഓരോന്നിനും ഫോട്ടോയുണ്ട്. യഥാർത്ഥ കുഴി കാണാൻ അലേർട്ടിൽ ടാപ് ചെയ്യൂ.">?</button></div>
       <div class="alist">
         <div class="al" data-img="assets/pothole-detect.jpg" data-pos="50% 70%" data-title="SH-29 മഞ്ചേരി–തിരൂർ" data-loc="11.067°N 76.074°E" data-cond="poor" data-label="കുഴിക്കൂട്ടം" data-conf="96%" data-src="സ്ട്രീറ്റ് സ്കാൻ">
           <span class="mk" style="background:var(--ar)"></span>
@@ -719,7 +704,7 @@ section{scroll-margin-top:64px}
       </div>
     </div>
     <div class="tov tov-sel brk">
-      <div class="tov-h"><span>തിരഞ്ഞെടുത്ത റോഡ്</span><span class="ct" id="selStatus">— റോഡ് ടാപ് ചെയ്യൂ</span><button class="hz" data-t="Selected Road" data-d="ഭൂപടത്തിലെ ഏതു റോഡിലും ടാപ് ചെയ്യൂ — അവസ്ഥ, നീളം, അവസാനം പരിശോധിച്ചത് — ഇവിടെ കാണാം.">?</button></div>
+      <div class="tov-h"><span>തിരഞ്ഞെടുത്ത റോഡ്</span><span class="ct" id="selStatus">റോഡ് ടാപ് ചെയ്യൂ</span><button class="hz" data-t="Selected Road" data-d="ഭൂപടത്തിലെ ഏതു റോഡിലും ടാപ് ചെയ്യൂ. അവസ്ഥ, നീളം, അവസാനം പരിശോധിച്ചത് ഇവിടെ കാണാം.">?</button></div>
       <div class="sel-b" id="selBody"><div class="sel-empty">അവസ്ഥ, നീളം, അവസാനം പരിശോധിച്ച തീയതി എന്നിവ കാണാൻ ഭൂപടത്തിലെ ഒരു റോഡിൽ ടാപ് ചെയ്യൂ.</div></div>
     </div>
     <div class="lightbox" id="lightbox">
@@ -727,10 +712,10 @@ section{scroll-margin-top:64px}
         <div class="lb-top"><span id="lbTitle">കണ്ടെത്തൽ</span><button class="lb-x" id="lbClose" aria-label="Close">✕</button></div>
         <div class="lb-img"><img id="lbImg" src="" alt="Detected defect"><span class="lb-bb" id="lbBox"><span class="lb-bt" id="lbBt">കുഴി</span></span></div>
         <div class="lb-meta">
-          <div class="lb-cell"><div class="k">വർഗ്ഗീകരണം</div><div class="v" id="lbLabel">—</div></div>
-          <div class="lb-cell"><div class="k">വിശ്വാസ്യത</div><div class="v" id="lbConf">—</div></div>
-          <div class="lb-cell"><div class="k">അവസ്ഥ</div><div class="v" id="lbCond">—</div></div>
-          <div class="lb-cell"><div class="k">സ്ഥാനം</div><div class="v" id="lbLoc" style="font-size:.78rem">—</div></div>
+          <div class="lb-cell"><div class="k">വർഗ്ഗീകരണം</div><div class="v" id="lbLabel"></div></div>
+          <div class="lb-cell"><div class="k">വിശ്വാസ്യത</div><div class="v" id="lbConf"></div></div>
+          <div class="lb-cell"><div class="k">അവസ്ഥ</div><div class="v" id="lbCond"></div></div>
+          <div class="lb-cell"><div class="k">സ്ഥാനം</div><div class="v" id="lbLoc" style="font-size:.78rem"></div></div>
         </div>
         <div class="lb-foot" id="lbFoot">ഉറവിടം: സ്ട്രീറ്റ് സ്കാൻ · ദൃശ്യചിത്രം തെളിവായി സൂക്ഷിച്ചു</div>
       </div>
@@ -747,7 +732,7 @@ section{scroll-margin-top:64px}
 <section id="fusion"><div class="hr"></div>
   <div class="wrap">
     <div class="fusion reveal">
-      <div class="fhead"><span class="kicker">ഡേറ്റ ഫ്യൂഷൻ</span><h3 class="ftitle">ഒരൊറ്റ ട്വിൻ, <em>പല ഉറവിടങ്ങൾ</em> — മുൻഗണനയോടെ, ഒഴിവാക്കലില്ലാതെ</h3></div>
+      <div class="fhead"><span class="kicker">ഡേറ്റ ഫ്യൂഷൻ</span><h3 class="ftitle">ഒരൊറ്റ ട്വിൻ, <em>പല ഉറവിടങ്ങൾ</em>, മുൻഗണനയോടെ, ഒഴിവാക്കലില്ലാതെ</h3></div>
       <div class="fdiag">
         <div class="fsrcs">
           <div class="fnode pri"><span class="fi"><svg class="ic"><use href="#i-camera"/></svg></span><div><div class="fn-n">സ്ട്രീറ്റ് വ്യൂ</div><div class="fn-b">മുൻഗണന 1 · ഇപ്പോൾ</div></div></div>
@@ -764,28 +749,7 @@ section{scroll-margin-top:64px}
           <path class="fwire" d="M0 270 C70 270 55 150 120 150"/>
         </svg>
         <div class="fcore brk">
-          <div class="fcore-map" id="fusionMap">
-            <span class="fcore-tag"><span class="sq"></span>തത്സമയ ട്വിൻ</span>
-            <svg class="fmap-svg" viewBox="0 0 220 160" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-              <rect width="220" height="160" fill="#c8ecd8" rx="0"/>
-              <path d="M125 2 C118 18 112 34 109 52 C106 68 107 84 104 100 C101 116 96 130 94 145 C92 155 90 158 90 158 L86 158 C86 148 88 136 90 122 C93 106 97 90 98 74 C99 58 97 42 100 26 C103 12 108 4 114 2 Z" fill="#a8d9bb" opacity=".7"/>
-              <path d="M109 8 Q108 40 106 72 Q104 104 102 140" stroke="#0c9a52" stroke-width="2.2" fill="none" stroke-linecap="round" opacity=".9"/>
-              <path d="M86 30 Q96 48 104 70" stroke="#FFB020" stroke-width="1.8" fill="none" stroke-linecap="round" opacity=".85"/>
-              <path d="M122 55 Q114 62 106 72 Q98 80 88 88" stroke="#FF5A52" stroke-width="2" fill="none" stroke-linecap="round" opacity=".85"/>
-              <path d="M104 100 Q116 96 128 90" stroke="#0c9a52" stroke-width="1.6" fill="none" stroke-linecap="round" opacity=".8"/>
-              <path d="M102 125 Q90 120 80 114" stroke="#FFB020" stroke-width="1.5" fill="none" stroke-linecap="round" opacity=".7"/>
-              <circle cx="95" cy="88" r="5" fill="#FF5A52" opacity=".9"/>
-              <circle cx="95" cy="88" r="9" fill="none" stroke="#FF5A52" stroke-width="1.2" opacity=".4"/>
-              <circle cx="106" cy="50" r="3.5" fill="#0c9a52" opacity=".9"/>
-              <circle cx="103" cy="115" r="3" fill="#FFB020" opacity=".9"/>
-              <line x1="0" y1="40" x2="220" y2="40" stroke="#0c9a52" stroke-width=".4" opacity=".2"/>
-              <line x1="0" y1="80" x2="220" y2="80" stroke="#0c9a52" stroke-width=".4" opacity=".2"/>
-              <line x1="0" y1="120" x2="220" y2="120" stroke="#0c9a52" stroke-width=".4" opacity=".2"/>
-              <line x1="55" y1="0" x2="55" y2="160" stroke="#0c9a52" stroke-width=".4" opacity=".2"/>
-              <line x1="110" y1="0" x2="110" y2="160" stroke="#0c9a52" stroke-width=".4" opacity=".2"/>
-              <line x1="165" y1="0" x2="165" y2="160" stroke="#0c9a52" stroke-width=".4" opacity=".2"/>
-            </svg>
-          </div>
+          <div class="fcore-map" id="fusionMap"><span class="fcore-tag"><span class="sq"></span>തത്സമയ ട്വിൻ</span></div>
           <div class="fcore-cap"><div class="fc-t">ഡിജിറ്റൽ ട്വിൻ</div><div class="fc-s">എല്ലാ ഉറവിടങ്ങളിൽ നിന്നുമുള്ള വിവരം ഒന്നിച്ചുചേർത്ത്, ഓരോ റോഡിന്റെയും തത്സമയ അവസ്ഥ ഒരു ഭൂപടത്തിൽ</div></div>
         </div>
       </div>
@@ -799,101 +763,34 @@ section{scroll-margin-top:64px}
 </section>
 
 <!-- DETECTION -->
-<section id="detect"><div class="hr"></div>
-  <div class="wrap">
-    <div class="shead reveal">
-      <span class="kicker">കണ്ടെത്തൽ എഞ്ചിൻ</span>
-      <h2 class="stitle">ഒരൊറ്റ ദൃശ്യചിത്രത്തിൽ നിന്ന് <em>ഒരു സ്കോർ ചെയ്ത തകരാർ</em>, യാന്ത്രികമായി</h2>
-      <p class="ssub">സ്ട്രീറ്റ്-ലെവൽ ചിത്രം ആകട്ടെ, ഓടുന്ന വാഹനത്തിലെ ഫോൺ ആകട്ടെ — ഓരോ ദൃശ്യചിത്രവും ഭാരതീയ റോഡ് സ്ഥിതിഗതികൾ പഠിച്ച ഒരു ദൃഷ്ടി-മോഡലിലൂടെ കടന്നുപോകുന്നു. ഓരോ തകരാറും നിമിഷനേരം കൊണ്ട് കണ്ടെത്തി തരംതിരിക്കുന്നു. ഒരു യഥാർത്ഥ ദൃശ്യചിത്രം വിശകലനം ചെയ്യുന്നത് കാണാൻ ഇങ്ങോട്ട് സ്ക്രോൾ ചെയ്യൂ.</p>
-    </div>
-    <div class="dgrid">
-      <div class="reveal d1">
-        <div class="viewer" id="viewerDetect">
-          <div class="vbar"><span>ഫ്രെയിം · SH-29 · 11.067°N 76.074°E</span><span class="r"><span class="sq"></span>YOLO-v8 / KERALA-ROADS</span></div>
-          <div class="vimg" id="vimgDetect">
-            <img src="assets/pothole-detect.jpg" alt="Road surface with potholes and cracking">
-            <div class="scanbar"></div>
-            <div class="bbox poor" data-d="0" style="left:38%;top:55%;width:28%;height:30%"><span class="btag">കുഴി · 96%</span><span class="crn a"></span><span class="crn b"></span></div>
-            <div class="bbox warn" data-d="1" style="left:9%;top:31%;width:36%;height:42%"><span class="btag">പ്രതല ക്ഷയം · 89%</span><span class="crn a"></span><span class="crn b"></span></div>
-            <div class="bbox" data-d="2" style="left:54%;top:11%;width:41%;height:45%"><span class="btag">ആലിഗേറ്റർ വിള്ളൽ · 83%</span><span class="crn a"></span><span class="crn b"></span></div>
-            <div class="bbox poor" data-d="3" style="left:1%;top:64%;width:23%;height:32%"><span class="btag">വക്ക് തകർച്ച · 78%</span><span class="crn a"></span><span class="crn b"></span></div>
-          </div>
-        </div>
-        <div class="vctl">
-          <span class="seg-toggle"><button id="bRaw">RAW</button><button id="bDet" class="on">വിശകലനം</button></span>
-          <button class="vreplay" id="bReplay"><svg class="ic-sm" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>വീണ്ടും സ്കാൻ</button>
-        </div>
-      </div>
-      <div class="reveal d2">
-        <div class="term brk">
-          <div class="term-h"><span>വിശകലന ഫലം</span><span id="termCount">— കണ്ടെത്തി</span></div>
-          <div class="term-b">
-            <div class="det-rows" id="detRows">
-              <div class="drow" data-d="0"><span class="mk" style="background:var(--ar)"></span><div><div class="nm">കുഴി</div><div class="mt">~0.4 m² · ആഴ-അടയാളം · ഘടനാ</div></div><span class="cf" style="color:var(--ar)">96%</span></div>
-              <div class="drow" data-d="1"><span class="mk" style="background:var(--au)"></span><div><div class="nm">പ്രതല ക്ഷയം</div><div class="mt">ഉരുൾ ഇടിഞ്ഞ് · വ്യാപനം</div></div><span class="cf" style="color:var(--au)">89%</span></div>
-              <div class="drow" data-d="2"><span class="mk" style="background:var(--ac)"></span><div><div class="nm">ആലിഗേറ്റർ വിള്ളൽ</div><div class="mt">ക്ഷീണം · 60 ദിവസം നിരീക്ഷണം</div></div><span class="cf" style="color:var(--ac)">83%</span></div>
-              <div class="drow" data-d="3"><span class="mk" style="background:var(--ar)"></span><div><div class="nm">വക്ക് തകർച്ച</div><div class="mt">ഡ്രെയിനേജ് ബന്ധിത · ഘടനാ</div></div><span class="cf" style="color:var(--ar)">78%</span></div>
-            </div>
-            <div id="termVerdict" class="termVerdict" style="border-top:1px solid var(--line);padding-top:11px;margin-top:4px;opacity:0">
-              <div class="term-line"><span class="k">ഭാഗം</span><span class="v">SH-29 / KM 12.4</span></div>
-              <div class="term-line"><span class="k">തകരാറ്</span><span class="v">4 കണ്ടെത്തി · 2 ഘടനാ</span></div>
-              <div class="term-line"><span class="k">സ്കോർ</span><span class="v">IRI 8.1 <span class="iri-bar"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i></i><i></i><i></i></span></span></div>
-              <div class="term-line"><span class="k">സ്ഥിതി</span><span class="v bad">▮ മോശം ഫ്ലാഗ് → മുൻഗണനാ ക്രമം</span></div>
-              <div class="term-line"><span class="k">തെളിവ്</span><span class="v">ദൃശ്യചിത്രം സൂക്ഷിച്ചു · 11.067°N 76.074°E <span class="cursor"></span></span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- IMAGERY / SOURCES -->
 <section id="sources"><div class="hr"></div>
   <div class="wrap">
     <div class="shead mid reveal">
       <span class="kicker">ചിത്ര തന്ത്രം</span>
-      <h2 class="stitle">ഓരോ ഉറവിടവും ട്വിന്നിലേക്ക് ഒഴുകുന്നു — <em>സ്ട്രീറ്റ് ദൃശ്യം ആദ്യം</em></h2>
-      <p class="ssub">ഉപഗ്രഹങ്ങൾ, ഡ്രോണുകൾ, ആപ്പ് ഫ്ലീറ്റ് — ഒക്കെ ഒരൊറ്റ മോഡലിലേക്ക് ഒഴുകുന്നു. ചോദ്യം: എവിടെ തുടങ്ങും? — കുഴി കാണാൻ, ഉത്തരം: നിലത്ത്.</p>
+      <h2 class="stitle">ഓരോ ഉറവിടവും ട്വിന്നിലേക്ക് ഒഴുകുന്നു: <em>സ്ട്രീറ്റ് ദൃശ്യം ആദ്യം</em></h2>
+      <p class="ssub">ഉപഗ്രഹങ്ങൾ, ഡ്രോണുകൾ, ആപ്പ് ഫ്ലീറ്റ്, ഒക്കെ ഒരൊറ്റ മോഡലിലേക്ക് ഒഴുകുന്നു. ചോദ്യം: എവിടെ തുടങ്ങും? കുഴി കാണാൻ, ഉത്തരം: നിലത്ത്.</p>
     </div>
 
     <div class="reso-card reveal">
       <div class="rt">റെസൊലൂഷൻ യാഥാർത്ഥ്യം</div>
       <div class="rs">ഒരു കുഴിക്ക് 20–60 cm വ്യാസം. ഇതാ <em>ഒരേ കുഴി</em>, ഓരോ ഉറവിടത്തിന്റെ ശേഷിയിൽ. ബഹിരാകാശത്ത് നിന്ന് മങ്ങലും; സ്ട്രീറ്റ് ലെവലിൽ മാത്രം വ്യക്തം.</div>
       <div class="reso-row" id="resoRow">
-        <div class="rframe"><div class="rcanvas"><span class="gsd">10 m/px</span><canvas data-gsd="10" width="240" height="180"></canvas></div><div class="rname">Sentinel-2 <span>· ഓപ്പൺ</span></div><div class="rvd no"><svg class="ic-sm" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>≈ 0.05 px — അദൃശ്യം</div></div>
-        <div class="rframe"><div class="rcanvas"><span class="gsd">3 m/px</span><canvas data-gsd="3" width="240" height="180"></canvas></div><div class="rname">Planet <span>· വ്യാപാരം</span></div><div class="rvd no"><svg class="ic-sm" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>≈ 0.2 px — അദൃശ്യം</div></div>
-        <div class="rframe"><div class="rcanvas"><span class="gsd">0.3 m/px</span><canvas data-gsd="0.3" width="240" height="180"></canvas></div><div class="rname">Maxar · നിർദ്ദിഷ്ടം <span>· ₹₹₹₹</span></div><div class="rvd warn"><svg class="ic-sm"><use href="#i-alert"/></svg>ഒരു മങ്ങൽ മാത്രം — ₹30 Cr-ന്</div></div>
+        <div class="rframe"><div class="rcanvas"><span class="gsd">10 m/px</span><canvas data-gsd="10" width="240" height="180"></canvas></div><div class="rname">Sentinel-2 <span>· ഓപ്പൺ</span></div><div class="rvd no"><svg class="ic-sm" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>0.05 px, അദൃശ്യം</div></div>
+        <div class="rframe"><div class="rcanvas"><span class="gsd">3 m/px</span><canvas data-gsd="3" width="240" height="180"></canvas></div><div class="rname">Planet <span>· വ്യാപാരം</span></div><div class="rvd no"><svg class="ic-sm" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>0.2 px, അദൃശ്യം</div></div>
+        <div class="rframe"><div class="rcanvas"><span class="gsd">0.3 m/px</span><canvas data-gsd="0.3" width="240" height="180"></canvas></div><div class="rname">Maxar · നിർദ്ദിഷ്ടം <span>· ₹₹₹₹</span></div><div class="rvd warn"><svg class="ic-sm"><use href="#i-alert"/></svg>ഒരു മങ്ങൽ മാത്രം, ₹30 Cr-ന്</div></div>
         <div class="rframe best"><div class="rcanvas"><span class="gsd">നിലം</span><canvas data-gsd="0.015" width="240" height="180"></canvas></div><div class="rname">സ്ട്രീറ്റ് / ആപ്പ് ഫ്ലീറ്റ് <span>· മുൻ‌നിര</span></div><div class="rvd ok"><svg class="ic-sm" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>വ്യക്തമായി കണ്ടെത്താം</div></div>
       </div>
-      <div class="reso-foot"><svg class="ic-sm"><use href="#i-satellite"/></svg><span>ഉപഗ്രഹങ്ങൾ ഇനിയും ഉപകാരപ്പെടുന്നു — ശൃംഖലയ്ക്കൊട്ടാകെ ഒരു ബേസ്‌മാപ്പും ബൃഹദ് മാറ്റ-കണ്ടെത്തലും. പക്ഷേ ഒരു തകരാർ <b>കാണണമെങ്കിൽ</b> നിലത്ത് ആകണം — അതുകൊണ്ടാണ് സ്ട്രീറ്റ് ചിത്രവും ആപ്പ് ഫ്ലീറ്റും മുൻ‌നിരയിൽ.</span></div>
+      <div class="reso-foot"><svg class="ic-sm"><use href="#i-satellite"/></svg><span>ഉപഗ്രഹങ്ങൾ ശൃംഖലയ്ക്കൊട്ടാകെ ഒരു ബേസ്‌മാപ്പും ബൃഹദ് മാറ്റ-കണ്ടെത്തലും ആയി ഉപകരിക്കുന്നു. പക്ഷേ ഒരു തകരാർ <b>കാണണമെങ്കിൽ</b> നിലത്ത് ആകണം. അതുകൊണ്ടാണ് സ്ട്രീറ്റ് ചിത്രവും ആപ്പ് ഫ്ലീറ്റും മുൻ‌നിരയിൽ.</span></div>
     </div>
 
-    <div class="scards reveal">
-      <div class="scard"><div class="si"><svg class="ic"><use href="#i-satellite"/></svg></div><div class="scat">ഓപ്പൺ ഉപഗ്രഹം</div><div class="sname">Sentinel-2 / Landsat</div>
-        <div class="srow"><span class="k">റെസൊലൂഷൻ</span><span class="v">10 m/px</span></div><div class="srow"><span class="k">ആവൃത്തി</span><span class="v">5 ദിവസം</span></div>
-        <div class="srow"><span class="k">ചെലവ്</span><span class="pips"><i class="g"></i><i></i><i></i><i></i><i></i></span></div>
-        <div class="svd ok">സൗജന്യ ശൃംഖലാ സന്ദർഭം &amp; മാറ്റ-കണ്ടെത്തൽ — ഞങ്ങളുടെ ബേസ്‌മാപ്പ്, ഡിറ്റക്ടറല്ല.</div></div>
-      <div class="scard"><div class="si"><svg class="ic"><use href="#i-satellite"/></svg></div><div class="scat">വ്യാപാര ഉപഗ്രഹം</div><div class="sname">Planet / SPOT</div>
-        <div class="srow"><span class="k">റെസൊലൂഷൻ</span><span class="v">0.5–3 m</span></div><div class="srow"><span class="k">ആവൃത്തി</span><span class="v">ദൈനന്ദിനം</span></div>
-        <div class="srow"><span class="k">ചെലവ്</span><span class="pips"><i class="r"></i><i class="r"></i><i class="r"></i><i></i><i></i></span></div>
-        <div class="svd warn">₹1.5–5 Cr/yr — കുഴി കണ്ടെത്തലിന് ഇനിയും നൂൽ-പൊലുള്ളത്.</div></div>
-      <div class="scard no"><div class="si"><svg class="ic"><use href="#i-target"/></svg></div><div class="scat">നിർദ്ദിഷ്ട ഉപഗ്രഹം</div><div class="sname">Maxar / Pléiades</div>
-        <div class="srow"><span class="k">റെസൊലൂഷൻ</span><span class="v">0.3 m</span></div><div class="srow"><span class="k">സമ്പൂർണ്ണ സർവേ</span><span class="v" style="color:var(--ar)">~₹30 Cr</span></div>
-        <div class="srow"><span class="k">ചെലവ്</span><span class="pips"><i class="r"></i><i class="r"></i><i class="r"></i><i class="r"></i><i class="r"></i></span></div>
-        <div class="svd no">ഭ്രമണപഥത്തിൽ ഏറ്റവും ഉയർന്ന റെസൊലൂഷൻ, പക്ഷേ ₹30 Cr/ശൃംഖലാ-പ്രദക്ഷിണം — അസഹ്യ ചെലവ്.</div></div>
-      <div class="scard cls"><div class="tagline">അടഞ്ഞ API</div><div class="si"><svg class="ic"><use href="#i-map"/></svg></div><div class="scat">സ്ട്രീറ്റ് വ്യൂ · അടഞ്ഞ</div><div class="sname">Google Street View</div>
-        <div class="srow"><span class="k">റെസൊലൂഷൻ</span><span class="v">നിലം</span></div><div class="srow"><span class="k">KL കവറേജ്</span><span class="v">~80% SH/NH</span></div>
-        <div class="srow"><span class="k">ML ഡൗൺലോഡ്</span><span class="v" style="color:var(--ar)">തടഞ്ഞ</span></div>
-        <div class="svd cls">ഉത്തമ ചിത്രങ്ങൾ, പക്ഷേ ഉടമ്പടി മോഡൽ പരിശീലനത്തിന് ഡൗൺലോഡ് വിലക്കുന്നു.</div></div>
-      <div class="scard rec"><div class="tagline">പ്രാഥമികം · ഇപ്പോൾ</div><div class="si"><svg class="ic"><use href="#i-camera"/></svg></div><div class="scat">ഓപ്പൺ സ്ട്രീറ്റ് വ്യൂ</div><div class="sname">Meta Mapillary</div>
-        <div class="srow"><span class="k">റെസൊലൂഷൻ</span><span class="v">നിലം</span></div><div class="srow"><span class="k">KL കവറേജ്</span><span class="v">വളരുന്നത്</span></div>
-        <div class="srow"><span class="k">ML ഡൗൺലോഡ്</span><span class="v" style="color:var(--ac)">പൂർണ്ണ API</span></div>
-        <div class="svd ok">ഓപ്പൺ-ലൈസൻസ്ഡ്, ഡൗൺലോഡ് ചെയ്യാൻ, സംഭാവന API. ഇവിടെ തുടങ്ങാം.</div></div>
-      <div class="scard"><div class="si"><svg class="ic"><use href="#i-drone"/></svg></div><div class="scat">ഡ്രോൺ / UAV</div><div class="sname">തന്ത്രിക സർവേ</div>
-        <div class="srow"><span class="k">റെസൊലൂഷൻ</span><span class="v">2–5 cm</span></div><div class="srow"><span class="k">വേഗത</span><span class="v">~20 km/ദിനം</span></div>
-        <div class="srow"><span class="k">ചെലവ്</span><span class="pips"><i class="r"></i><i class="r"></i><i class="r"></i><i></i><i></i></span></div>
-        <div class="svd warn">ഏറ്റവും ഉയർന്ന ഗുണം, പക്ഷേ മന്ദഗതി &amp; അനുമതി-ഭാരം. നിർണ്ണായക-സ്ഥാന പരിശോധനക്ക് മാത്രം.</div></div>
+    <div class="srcs-min reveal">
+      <div class="src-item"><div class="si"><svg class="ic"><use href="#i-satellite"/></svg></div><div><div class="src-name">Sentinel-2 / Landsat</div><div class="src-note">സൗജന്യ ബേസ്‌മാപ്പ്, കുഴി കണ്ടെത്താൻ ഉള്ള ശേഷിയില്ല.</div></div></div>
+      <div class="src-item"><div class="si"><svg class="ic"><use href="#i-satellite"/></svg></div><div><div class="src-name">Planet / SPOT</div><div class="src-note">ദൈനന്ദിന വ്യാപാര ചിത്രങ്ങൾ, ഇനിയും കുഴിക്ക് ആവശ്യമായ ശ്രദ്ധ ഇല്ല.</div></div></div>
+      <div class="src-item"><div class="si"><svg class="ic"><use href="#i-target"/></svg></div><div><div class="src-name">Maxar / Pléiades</div><div class="src-note">ഉപഗ്രഹ ചിത്രങ്ങളിൽ ഏറ്റവും മൂർച്ച, പക്ഷേ കേരളം മുഴുവൻ ≈₹30 Cr ആകും.</div></div></div>
+      <div class="src-item"><div class="si"><svg class="ic"><use href="#i-map"/></svg></div><div><div class="src-name">Google Street View</div><div class="src-note">ഉത്തമ ഗ്രൗണ്ട്-ലെവൽ ചിത്രങ്ങൾ, AI പരിശീലനത്തിന് ഡൗൺലോഡ് ഉടമ്പടി അനുവദിക്കുന്നില്ല.</div></div></div>
+      <div class="src-item primary"><div class="si"><svg class="ic"><use href="#i-camera"/></svg></div><div><div class="src-name">Meta Mapillary <span style="font-size:.68rem;font-weight:700;color:var(--ac);margin-left:6px;letter-spacing:.05em">▲ പ്രാഥമികം</span></div><div class="src-note">ഓപ്പൺ-ലൈസൻസ്ഡ്, ഡൗൺലോഡ് ചെയ്യാൻ, ഞങ്ങളുടെ ഫ്ലീറ്റ് ചേർക്കുമ്പോൾ വളരും.</div></div></div>
+      <div class="src-item"><div class="si"><svg class="ic"><use href="#i-drone"/></svg></div><div><div class="src-name">ഡ്രോൺ / UAV</div><div class="src-note">ഏറ്റവും ഉയർന്ന ഗുണം, നിർണ്ണായക സ്ഥലങ്ങൾ പരിശോധിക്കാൻ മാത്രം.</div></div></div>
     </div>
 
 
@@ -901,8 +798,13 @@ section{scroll-margin-top:64px}
 </section>
 
 <!-- AI DETECT -->
-<section id="ai">
+<section id="ai"><div class="hr"></div>
   <div class="wrap">
+    <div class="shead mid reveal">
+      <span class="kicker">കണ്ടെത്തൽ എഞ്ചിൻ</span>
+      <h2 class="stitle">ഒരു പരിശോധകൻ കാണുന്നത് <em>കമ്പ്യൂട്ടറും കാണുന്നു</em></h2>
+      <p class="ssub">ഒരു റോഡിന്റെ ഒറ്റ ഫോട്ടോ മതി, പ്രശ്നങ്ങൾ ഉടനെ അടയാളപ്പെടുത്തും. എഞ്ചിനീയർ നേരിട്ട് പോകേണ്ടതില്ല. ഓരോ റോഡിനും ഇത് ചെയ്താൽ സംസ്ഥാനത്തിന്റെ മുഴുവൻ അവസ്ഥയും അറിയാം.</p>
+    </div>
     <div class="ai-grid">
       <div class="reveal" id="s-ai">
         <div class="viewer" id="viewerAi">
@@ -916,14 +818,10 @@ section{scroll-margin-top:64px}
           </div>
         </div>
       </div>
-      <div class="ai-txt reveal">
-        <h3>ഒരു പരിശോധകൻ കാണുന്നത് കമ്പ്യൂട്ടറും കാണുന്നു</h3>
-        <p>ഒരു റോഡിന്റെ ഒറ്റ ഫോട്ടോ മതി, പ്രശ്നങ്ങൾ ഉടനെ അടയാളപ്പെടുത്തും — എഞ്ചിനീയർ നേരിട്ട് പോകേണ്ട. ഓരോ റോഡിനും ഇത് ചെയ്താൽ സംസ്ഥാനത്തിന്റെ മുഴുവൻ അവസ്ഥയും അറിയാം.</p>
-        <div class="ai-found" id="aiFound">
-          <div class="af" data-d="0"><span class="d" style="background:var(--ar)"></span><span class="nm">കുഴി</span><span class="ds">ഉടൻ നന്നാക്കണം</span></div>
-          <div class="af" data-d="1"><span class="d" style="background:var(--au)"></span><span class="nm">തേഞ്ഞ പ്രതലം</span><span class="ds">ശ്രദ്ധിക്കണം</span></div>
-          <div class="af" data-d="3"><span class="d" style="background:var(--ar)"></span><span class="nm">പൊട്ടിയ വക്ക്</span><span class="ds">ഉടൻ നന്നാക്കണം</span></div>
-        </div>
+      <div class="ai-found reveal" id="aiFound">
+        <div class="af" data-d="0"><span class="d" style="background:var(--ar)"></span><span class="nm">കുഴി</span><span class="ds">ഉടൻ നന്നാക്കണം</span></div>
+        <div class="af" data-d="1"><span class="d" style="background:var(--au)"></span><span class="nm">തേഞ്ഞ പ്രതലം</span><span class="ds">ശ്രദ്ധിക്കണം</span></div>
+        <div class="af" data-d="3"><span class="d" style="background:var(--ar)"></span><span class="nm">പൊട്ടിയ വക്ക്</span><span class="ds">ഉടൻ നന്നാക്കണം</span></div>
       </div>
     </div>
   </div>
@@ -935,10 +833,10 @@ section{scroll-margin-top:64px}
     <div class="help-grid">
       <div class="help-txt reveal" id="s-help">
         <h3>ഫോണുള്ള ആർക്കും സഹായിക്കാം</h3>
-        <p>നിങ്ങളുടെ ഫോൺ ഇപ്പോൾത്തന്നെ റോഡിലെ ഓരോ കുലുക്കവും അനുഭവിക്കുന്നു. ഞങ്ങളുടെ ആപ്പ് അത് ഉപകാരപ്രദമായ വിവരമാക്കുന്നു — സ്വയമേവ, പശ്ചാത്തലത്തിൽ.</p>
+        <p>നിങ്ങളുടെ ഫോൺ ഇപ്പോൾത്തന്നെ റോഡിലെ ഓരോ കുലുക്കവും അനുഭവിക്കുന്നു. ഞങ്ങളുടെ ആപ്പ് അത് ഉപകാരപ്രദമായ വിവരമാക്കുന്നു, സ്വയമേവ, പശ്ചാത്തലത്തിൽ.</p>
         <div class="pt"><svg class="ic" viewBox="0 0 24 24"><path d="m21.7 18-8-14a2 2 0 0 0-3.4 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.7-3Z"/><path d="M12 9v4M12 17h.01"/></svg><span>മോശം കുഴിയിൽ ഇടിച്ചോ? റിപ്പോർട്ട് ചെയ്യണോ എന്ന് ഫോൺ <b>വൈബ്രേറ്റ് ചെയ്ത് ചോദിക്കും</b>.</span></div>
         <div class="pt"><svg class="ic" viewBox="0 0 24 24"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg><span>ഡാഷ്‌ബോർഡിൽ ഘടിപ്പിച്ചാൽ ഓടുമ്പോൾ അത് <b>റോഡ് ഫോട്ടോ എടുക്കും</b>.</span></div>
-        <div class="pt"><svg class="ic" viewBox="0 0 24 24"><path d="M16 22h2a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v3"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><circle cx="6" cy="14" r="3"/><path d="M6 10v1M6 17v1M2 14h1M9 14h1"/></svg><span>ബസ്, ഓട്ടോ, സർവേയർ — ഏതു വാഹനവും ഒരു <b>റോഡ് സെൻസറാകും</b>.</span></div>
+        <div class="pt"><svg class="ic" viewBox="0 0 24 24"><path d="M16 22h2a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v3"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><circle cx="6" cy="14" r="3"/><path d="M6 10v1M6 17v1M2 14h1M9 14h1"/></svg><span>ബസ്, ഓട്ടോ, സർവേയർ: ഏതു വാഹനവും ഒരു <b>റോഡ് സെൻസറാകും</b>.</span></div>
       </div>
       <div class="help-phones reveal">
         <div class="phone-jolt"><div class="iphone vib">
@@ -996,7 +894,7 @@ section{scroll-margin-top:64px}
     <div class="why-grid" id="s-why">
       <div class="why-c reveal"><svg class="ic" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg><h3>സുരക്ഷിത റോഡുകൾ</h3><p>മോശം റോഡ് പ്രതലം അപകടങ്ങൾക്ക് കാരണമാകുന്നു. നേരത്തെ കണ്ടെത്തി നന്നാക്കിയാൽ അപകടം കുറയും, ജീവൻ രക്ഷിക്കാം.</p></div>
       <div class="why-c reveal"><svg class="ic" viewBox="0 0 24 24"><path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg><h3>പണം ലാഭിക്കുന്നു</h3><p>ചെറിയ വിള്ളൽ നേരത്തെ നന്നാക്കുന്നത് പിന്നീട് തകർന്ന റോഡ് പുനർനിർമ്മിക്കുന്നതിന്റെ ചെറിയ അംശം മാത്രം. അതേ ബജറ്റിൽ കൂടുതൽ റോഡ്.</p></div>
-      <div class="why-c reveal"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg><h3>നീതിയുക്തം</h3><p>റോഡുകൾ ശരിക്കും മോശമായിടത്ത് അറ്റകുറ്റപ്പണി — ഉറക്കെ പരാതിപ്പെടുന്നവരല്ല, ഡാറ്റയാണ് തീരുമാനിക്കുന്നത്.</p></div>
+      <div class="why-c reveal"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg><h3>നീതിയുക്തം</h3><p>റോഡുകൾ ശരിക്കും മോശമായിടത്ത് അറ്റകുറ്റപ്പണി, ഉറക്കെ പരാതിപ്പെടുന്നവരല്ല, ഡാറ്റയാണ് തീരുമാനിക്കുന്നത്.</p></div>
       <div class="why-c reveal"><svg class="ic" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg><h3>സുതാര്യം</h3><p>ഓരോ അറ്റകുറ്റപ്പണിക്കും മുമ്പും ശേഷവുമുള്ള ഫോട്ടോകൾ. എന്ത്, എവിടെ, എപ്പോൾ നന്നാക്കിയെന്ന് ജനങ്ങൾക്കും നിയമസഭയ്ക്കും കാണിക്കാം.</p></div>
     </div>
   </div>
@@ -1006,7 +904,7 @@ section{scroll-margin-top:64px}
 <section id="close">
   <div class="wrap">
     <h2 class="close-h reveal"><em>ഒരു ജില്ലയിൽ</em> തുടങ്ങാം.</h2>
-    <p class="close-p reveal">മലപ്പുറത്തും തൃശൂരും സംസ്ഥാന പാതകളിൽ 500 കി.മീ. പൈലറ്റ് — വകുപ്പിന് മുൻകൂർ ചെലവില്ല. ആഴ്ചകൾക്കുള്ളിൽ മുഴുവൻ ശൃംഖലയും ഒരു ഭൂപടത്തിൽ.</p>
+    <p class="close-p reveal">മലപ്പുറത്തും തൃശൂരും സംസ്ഥാന പാതകളിൽ 500 കി.മീ. പൈലറ്റ്, വകുപ്പിന് മുൻകൂർ ചെലവില്ല. ആഴ്ചകൾക്കുള്ളിൽ മുഴുവൻ ശൃംഖലയും ഒരു ഭൂപടത്തിൽ.</p>
     <div class="close-cta reveal">
       <a href="mailto:hello@projectpothole.in" class="btn-a">ബന്ധപ്പെടുക</a>
       <button class="btn-b" id="closeTour">എങ്ങനെ പ്രവർത്തിക്കുന്നു</button>
@@ -1089,6 +987,14 @@ function pp(r){return `<div class="pp-n">${r.name}</div>
   m.on('zoomend moveend',upd);upd();
 })();
 
+/* FUSION MAP — real Leaflet satellite map with colour-coded roads */
+(()=>{const el=document.getElementById('fusionMap');if(!el)return;
+  const m=L.map('fusionMap',{zoomControl:false,attributionControl:false,scrollWheelZoom:false,dragging:false,doubleClickZoom:false,keyboard:false,touchZoom:false,boxZoom:false});
+  L.tileLayer(SAT,SATO).addTo(m);m.fitBounds(KLB,{padding:[4,4]});
+  ROADS.forEach(r=>{L.polyline(r.pts,{color:'#000',weight:2.6,opacity:.35}).addTo(m);L.polyline(r.pts,{color:CC[r.c],weight:1.6,opacity:.95}).addTo(m);});
+  new IntersectionObserver((en)=>{if(en[0].isIntersecting)setTimeout(()=>{m.invalidateSize();m.fitBounds(KLB,{padding:[4,4]});},250);},{threshold:.2}).observe(el);
+})();
+
 /* ALERT → lightbox (click an alert to expand the detected image) */
 (()=>{
   const lb=document.getElementById('lightbox');if(!lb)return;
@@ -1100,10 +1006,10 @@ function pp(r){return `<div class="pp-n">${r.name}</div>
     box.className='lb-bb'+(d.cond==='fair'?' w':'');
     bt.textContent=(d.label||'DEFECT')+' · '+(d.conf||'');
     document.getElementById('lbTitle').textContent=d.title||'Detection';
-    document.getElementById('lbLabel').textContent=d.label||'—';
-    document.getElementById('lbConf').textContent=d.conf||'—';
-    const cond=document.getElementById('lbCond');cond.textContent=CLN[d.cond]||'—';cond.style.color=CCL[d.cond]||'var(--tx)';
-    document.getElementById('lbLoc').textContent=d.loc||'—';
+    document.getElementById('lbLabel').textContent=d.label||'';
+    document.getElementById('lbConf').textContent=d.conf||'';
+    const cond=document.getElementById('lbCond');cond.textContent=CLN[d.cond]||'';cond.style.color=CCL[d.cond]||'var(--tx)';
+    document.getElementById('lbLoc').textContent=d.loc||'';
     document.getElementById('lbFoot').textContent='ഉറവിടം: '+(d.src||'detection').toLowerCase()+' · ദൃശ്യചിത്രം തെളിവായി സൂക്ഷിച്ചു';
     lb.classList.add('show');
   }
@@ -1114,55 +1020,7 @@ function pp(r){return `<div class="pp-n">${r.name}</div>
   addEventListener('keydown',e=>{if(e.key==='Escape')close();});
 })();
 
-/* ── Detection Engine scan (detect section) ── */
-(()=>{
-  const vDet=document.getElementById('viewerDetect');if(!vDet)return;
-  const boxesDet=[...document.querySelectorAll('#vimgDetect .bbox')];
-  const rowsDet=[...document.querySelectorAll('#detRows .drow')];
-  const verdict=document.getElementById('termVerdict');
-  const termCount=document.getElementById('termCount');
-  let timers=[],ranDet=false;
-  function clearDet(){timers.forEach(clearTimeout);timers=[];boxesDet.forEach(b=>b.classList.remove('show'));rowsDet.forEach(r=>r.classList.remove('show'));if(verdict)verdict.classList.remove('show'),verdict.style.opacity='0';vDet.classList.remove('done','scan');}
-  function scanDet(){
-    clearDet();void vDet.offsetWidth;vDet.classList.add('scan');
-    timers.push(setTimeout(()=>vDet.classList.add('done'),650));
-    [0,1,2,3].forEach((d,i)=>{
-      timers.push(setTimeout(()=>{
-        const b=boxesDet.find(x=>x.dataset.d==d),r=rowsDet.find(x=>x.dataset.d==d);
-        if(b)b.classList.add('show');if(r)r.classList.add('show');
-      },700+i*380));
-    });
-    timers.push(setTimeout(()=>{
-      if(termCount)termCount.textContent='4 കണ്ടെത്തി';
-      if(verdict){verdict.style.opacity='1';verdict.classList.add('show');}
-    },700+4*380));
-  }
-  new IntersectionObserver(en=>{
-    if(en[0].isIntersecting&&!ranDet){ranDet=true;scanDet();}
-    else if(!en[0].isIntersecting)ranDet=false;
-  },{threshold:.35}).observe(vDet);
-
-  /* RAW / വിശകലനം / വീണ്ടും സ്കാൻ buttons */
-  const bRaw=document.getElementById('bRaw'),bDet2=document.getElementById('bDet'),bReplay=document.getElementById('bReplay');
-  let showingRaw=false;
-  if(bRaw)bRaw.onclick=()=>{
-    if(showingRaw)return;showingRaw=true;
-    bRaw.classList.add('on');if(bDet2)bDet2.classList.remove('on');
-    boxesDet.forEach(b=>b.style.visibility='hidden');
-  };
-  if(bDet2)bDet2.onclick=()=>{
-    if(!showingRaw)return;showingRaw=false;
-    bDet2.classList.add('on');if(bRaw)bRaw.classList.remove('on');
-    boxesDet.forEach(b=>b.style.visibility='');
-  };
-  if(bReplay)bReplay.onclick=()=>{
-    showingRaw=false;if(bDet2)bDet2.classList.add('on');if(bRaw)bRaw.classList.remove('on');
-    boxesDet.forEach(b=>b.style.visibility='');
-    ranDet=false;scanDet();
-  };
-})();
-
-/* ── AI section scan (ai section) ── */
+/* ── AI section scan ── */
 (()=>{
   const vAi=document.getElementById('viewerAi');if(!vAi)return;
   const boxesAi=[...document.querySelectorAll('#vimgAi .bbox')];
@@ -1183,66 +1041,18 @@ function pp(r){return `<div class="pp-n">${r.name}</div>
   },{threshold:.5}).observe(vAi);
 })();
 
-/* ── Resolution canvas renderer ── */
-(()=>{
-  function drawCanvas(canvas){
-    const gsd=parseFloat(canvas.dataset.gsd);
-    const ctx=canvas.getContext('2d');
-    const W=canvas.width,H=canvas.height;
-    ctx.clearRect(0,0,W,H);
-    if(gsd>=5){
-      const blkW=Math.round(W/6),blkH=Math.round(H/5);
-      const palette=['#6a7a58','#7a8a62','#5e6e4c','#8a9a6e','#6e7e58','#748264','#626e50','#88985e','#707a56','#6c7e5a','#7a8260','#6a7260'];
-      for(let r=0;r<5;r++)for(let c=0;c<6;c++){ctx.fillStyle=palette[(r*6+c)%palette.length];ctx.fillRect(c*blkW,r*blkH,blkW+1,blkH+1);}
-      ctx.fillStyle='rgba(110,100,88,.25)';ctx.fillRect(W*.38,0,W*.22,H);
-      ctx.fillStyle='rgba(0,0,0,.32)';ctx.fillRect(0,H-26,W,26);
-      ctx.fillStyle='rgba(255,255,255,.55)';ctx.font='bold 9px monospace';ctx.textAlign='center';
-      ctx.fillText('കുഴി ≈ 0.05 px — അദൃശ്യം',W/2,H-10);
-    }else if(gsd>=2){
-      ctx.fillStyle='#6a7a58';ctx.fillRect(0,0,W,H);
-      ctx.fillStyle='#7e7a6e';ctx.fillRect(W*.3,0,W*.38,H);
-      const blk=10;
-      for(let x=0;x<W;x+=blk)for(let y=0;y<H;y+=blk){
-        const v=(Math.random()-.5)*22;
-        ctx.fillStyle=`rgba(${v>0?255:0},${v>0?255:0},${v>0?255:0},${Math.abs(v)/100})`;
-        ctx.fillRect(x,y,blk,blk);
-      }
-      ctx.fillStyle='rgba(0,0,0,.3)';ctx.fillRect(0,H-26,W,26);
-      ctx.fillStyle='rgba(255,255,255,.55)';ctx.font='bold 9px monospace';ctx.textAlign='center';
-      ctx.fillText('കുഴി ≈ 0.2 px — അദൃശ്യം',W/2,H-10);
-    }else if(gsd>=0.2){
-      ctx.fillStyle='#5a5852';ctx.fillRect(0,0,W,H);
-      ctx.fillStyle='#504c46';ctx.fillRect(W*.2,0,W*.6,H);
-      for(let i=0;i<180;i++){const v=Math.random()>.5?'rgba(255,255,255,.06)':'rgba(0,0,0,.06)';const s=Math.random()*4+2;ctx.fillStyle=v;ctx.fillRect(Math.random()*W,Math.random()*H,s,s);}
-      const grad=ctx.createRadialGradient(W*.5,H*.56,0,W*.5,H*.56,W*.14);
-      grad.addColorStop(0,'rgba(22,18,12,.6)');grad.addColorStop(1,'rgba(22,18,12,0)');
-      ctx.fillStyle=grad;ctx.fillRect(0,0,W,H);
-      ctx.strokeStyle='rgba(255,176,32,.75)';ctx.lineWidth=1.5;ctx.setLineDash([4,3]);
-      ctx.strokeRect(W*.34,H*.42,W*.32,H*.28);ctx.setLineDash([]);
-      ctx.fillStyle='rgba(0,0,0,.3)';ctx.fillRect(0,H-26,W,26);
-      ctx.fillStyle='rgba(255,176,32,.8)';ctx.font='bold 9px monospace';ctx.textAlign='center';
-      ctx.fillText('ഒരു മങ്ങല്‍ — ₹30 Cr-ന്‍',W/2,H-10);
-    }else{
-      ctx.fillStyle='#504e48';ctx.fillRect(0,0,W,H);
-      ctx.fillStyle='#47433e';ctx.fillRect(W*.12,0,W*.76,H);
-      for(let i=0;i<350;i++){const s=Math.random()*2.5+.5;ctx.fillStyle=Math.random()>.5?'rgba(255,255,255,.07)':'rgba(0,0,0,.1)';ctx.fillRect(Math.random()*W,Math.random()*H,s,s);}
-      ctx.fillStyle='#232018';
-      ctx.beginPath();ctx.ellipse(W*.49,H*.57,W*.13,H*.1,-0.2,0,Math.PI*2);ctx.fill();
-      ctx.fillStyle='#141210';
-      ctx.beginPath();ctx.ellipse(W*.48,H*.58,W*.08,H*.065,-0.2,0,Math.PI*2);ctx.fill();
-      ctx.strokeStyle='#38342e';ctx.lineWidth=1.2;
-      [[W*.49,H*.48,W*.43,H*.35],[W*.54,H*.5,W*.64,H*.4],[W*.5,H*.65,W*.56,H*.76]].forEach(([x1,y1,x2,y2])=>{ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();});
-      ctx.strokeStyle='#FF5A52';ctx.lineWidth=2;ctx.setLineDash([]);
-      ctx.strokeRect(W*.32,H*.44,W*.34,H*.28);
-      const m=7,tx=W*.32,ty=H*.44,bx=W*.66,by=H*.72;
-      ctx.strokeStyle='#FF5A52';ctx.lineWidth=2;
-      [[tx,ty,1,1],[bx,ty,-1,1],[tx,by,1,-1],[bx,by,-1,-1]].forEach(([x,y,sx,sy])=>{ctx.beginPath();ctx.moveTo(x+sx*m,y);ctx.lineTo(x,y);ctx.lineTo(x,y+sy*m);ctx.stroke();});
-      ctx.fillStyle='rgba(0,0,0,.3)';ctx.fillRect(0,H-26,W,26);
-      ctx.fillStyle='rgba(52,209,126,.9)';ctx.font='bold 9px monospace';ctx.textAlign='center';
-      ctx.fillText('വ്യക്തമായി കണ്ടെത്താം',W/2,H-10);
-    }
-  }
-  document.querySelectorAll('canvas[data-gsd]').forEach(drawCanvas);
+/* ── Resolution canvas renderer (real pothole-detect.jpg pixelated per GSD) ── */
+(()=>{const row=document.getElementById('resoRow');if(!row)return;
+  const img=new Image();img.src='assets/pothole-detect.jpg';
+  const SCENE=6;
+  const canvases=[...row.querySelectorAll('canvas')];
+  function draw(){const sx=img.width*0.30,sy=img.height*0.42,sw=img.width*0.46,sh=img.height*0.46;
+    canvases.forEach(cv=>{const g=+cv.dataset.gsd,px=Math.max(1,Math.round(SCENE/g)),py=Math.max(1,Math.round(px*0.75));
+      const ctx=cv.getContext('2d');const off=document.createElement('canvas');off.width=px;off.height=py;
+      const octx=off.getContext('2d');octx.drawImage(img,sx,sy,sw,sh,0,0,px,py);
+      ctx.imageSmoothingEnabled=false;ctx.clearRect(0,0,cv.width,cv.height);ctx.drawImage(off,0,0,px,py,0,0,cv.width,cv.height);});}
+  if(img.complete)draw();else img.onload=draw;
+  new IntersectionObserver((en)=>{if(en[0].isIntersecting){draw();}},{threshold:.3}).observe(row);
 })();
 
 /* ── dashboard hotzones (click ? to learn what a panel is) ── */
@@ -1261,7 +1071,7 @@ function pp(r){return `<div class="pp-n">${r.name}</div>
 
 /* "എങ്ങനെ പ്രവർത്തിക്കുന്നു" tour — auto-scrolls through key sections */
 (()=>{
-  const stops=['#how','#twin','#detect','#ai'];
+  const stops=['#how','#twin','#sources','#ai'];
   let tourT=[];
   function startTour(){
     tourT.forEach(clearTimeout);tourT=[];
